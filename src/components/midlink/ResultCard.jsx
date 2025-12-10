@@ -76,8 +76,8 @@ const ResultCard = forwardRef(({ data }, ref) => {
                             key={idx} 
                             className="flex items-start gap-3 group"
                         >
-                            <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0 group-hover:bg-indigo-600 transition-colors" />
-                            <p className="text-slate-800 text-sm font-semibold leading-snug tracking-tight">
+                            <div className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-2 shrink-0 group-hover:bg-teal-500 transition-colors shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
+                            <p className="text-slate-700 text-sm font-medium leading-snug tracking-tight group-hover:text-slate-900 transition-colors">
                                 {point}
                             </p>
                         </motion.div>
