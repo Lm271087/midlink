@@ -14,14 +14,22 @@ Deno.serve(async (req) => {
         const llmResponse = await base44.integrations.Core.InvokeLLM({
             prompt: `
             Analyze the following URL: ${url}
-            
+
             Task:
-            1. Visit the page and read its main content.
-            2. Extract the main Title.
-            3. Write a concise Summary (max 2 sentences, engaging).
-            4. Identify 3 to 5 Key Points (bullet points).
-            5. Find the most relevant Image URL (og:image or main article image). If none found, return null.
-            6. Identify the Source Name (e.g., "CNN", "TechCrunch", "Blog do Fulano").
+            1. Visit the page/video and analyze its main content.
+            2. If it is a VIDEO (YouTube, Vimeo, etc.):
+               - Title: Video title.
+               - Summary: Engaging summary of what the video is about (max 2 sentences).
+               - Key Points: 3-5 main takeaways or topics discussed in the video.
+               - Image: The highest quality video thumbnail available.
+               - Source Name: The platform name (e.g., "YouTube", "Vimeo").
+
+            3. If it is a WEB PAGE (Article, Blog, etc.):
+               - Title: Article title.
+               - Summary: Concise summary (max 2 sentences).
+               - Key Points: 3-5 main bullet points.
+               - Image: Main article image or og:image.
+               - Source Name: Website name (e.g., "CNN", "TechCrunch").
 
             Return ONLY a valid JSON object with this structure:
             {

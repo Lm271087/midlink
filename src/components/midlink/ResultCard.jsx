@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, PlayCircle } from "lucide-react";
 
 const ResultCard = forwardRef(({ data }, ref) => {
     if (!data) return null;
@@ -36,6 +36,15 @@ const ResultCard = forwardRef(({ data }, ref) => {
                 
                 {/* Gradient Overlay for Text Readability - Enhanced */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-90"></div>
+
+                {/* Video Play Overlay */}
+                {['youtube', 'vimeo', 'dailymotion', 'youtu.be'].some(v => (source_name || '').toLowerCase().includes(v)) && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                        <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full border border-white/30 shadow-lg">
+                            <PlayCircle className="w-8 h-8 text-white fill-white/20" />
+                        </div>
+                    </div>
+                )}
                 
                 {/* Title Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 z-10">
