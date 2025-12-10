@@ -66,17 +66,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
 
 
 
-                {/* Video Play Overlay */}
-                {(
-                    content_type?.toLowerCase().includes('video') || 
-                    ['youtube', 'vimeo', 'dailymotion', 'youtu.be', 'tiktok', 'instagram'].some(v => (source_name || '').toLowerCase().includes(v) || (data.original_url || '').toLowerCase().includes(v))
-                ) && (
-                    <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                        <div className="group-hover:scale-110 transition-transform duration-300 bg-white/25 backdrop-blur-md p-4 rounded-full border border-white/40 shadow-xl">
-                            <PlayCircle className="w-10 h-10 text-white fill-white/20" />
-                        </div>
-                    </div>
-                )}
+                {/* Video Play Overlay - Removed as requested */}
                 
                 {/* Title Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 pt-24 z-10 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent">

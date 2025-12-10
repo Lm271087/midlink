@@ -23,23 +23,25 @@ Deno.serve(async (req) => {
             Analyze the following URL: ${url}
 
             Task:
-            1. Visit the page/video and analyze its main content comprehensively.
-            2. EXTRACT AND TRANSLATE ALL CONTENT TO: ${languageName}.
-            3. **CRITICAL FOR VIDEO LINKS (YouTube, TikTok, Instagram, etc.):**
-               - If you cannot watch the video, YOU MUST extract details from the **page metadata** (og:title, og:description, json-ld), **video description**, **comments**, and **page title**.
-               - NEVER return empty fields for a video. Use the text surrounding the video player to reconstruct the content.
+            1. Visit the page/video URL and analyze it. 
+            2. **FORCE EXTRACTION**: If the content is a video (YouTube, etc.) or protected, YOU MUST USE THE PAGE METADATA (Title, Description, og:image, Keywords) to generate the content. DO NOT FAIL.
+            3. EXTRACT AND TRANSLATE ALL CONTENT TO: ${languageName}.
 
-            4. If it is a VIDEO (YouTube, Vimeo, etc.):
-               - Title: Video title (Translate to ${languageName}).
-               - Summary: Create a concise, engaging 'story-style' summary (2-3 sentences max) in ${languageName}. Focus on the most critical narrative arc.
-               - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
-               - Author: Channel/Creator Name.
-               - Published Date: Upload date.
-               - Content Type: "Video" (or specific like "Video Tutorial", "Video Essay") - Translate label to ${languageName}.
-               - Image: High-res thumbnail.
-               - Source Name: Platform (e.g., "YouTube").
+            4. **CRITICAL INSTRUCTION**: 
+               - **NEVER return null or empty strings**. If you can't find specific details, **INFER them from the URL or page title**, or generate a generic description based on the available metadata.
+               - **IMAGE**: For YouTube/Videos, ALWAYS find the **thumbnail URL** (og:image). If missing, use a relevant stock image URL.
 
-            5. If it is a WEB PAGE:
+            5. REQUIRED FIELDS (Translate to ${languageName}):
+               - Title: Main title/headline.
+               - Summary: A concise, engaging 'story-style' summary (2-3 sentences max).
+               - Key Points: Exactly 3 short, punchy facts/takeaways.
+               - Author: Channel/Creator/Author name.
+               - Published Date: Date or "Recent".
+               - Content Type: "Video", "News", "Article", etc.
+               - Image: The extracted image URL.
+               - Source Name: The website name (e.g., "YouTube").
+
+            6. If it is a WEB PAGE:
                - Title: Main headline (Translate to ${languageName}).
                - Summary: Create a concise, engaging 'story-style' summary (2-3 sentences max) in ${languageName}. Focus on the main story.
                - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
