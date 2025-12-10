@@ -2,7 +2,7 @@ import React, { forwardRef, useRef } from 'react';
 import { motion } from "framer-motion";
 import { Quote, PlayCircle, ImagePlus, Pencil } from "lucide-react";
 
-const ResultCard = forwardRef(({ data, onImageUpdate }, ref) => {
+const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
     const fileInputRef = useRef(null);
 
     if (!data) return null;
@@ -38,11 +38,11 @@ const ResultCard = forwardRef(({ data, onImageUpdate }, ref) => {
             <div className="relative h-64 w-full bg-slate-900 overflow-hidden shrink-0 group/image">
                 {/* Image Edit Button */}
                 <button
-                    onClick={() => fileInputRef.current?.click()}
-                    className="absolute top-3 right-3 z-30 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-md opacity-0 group-hover/image:opacity-100 transition-opacity border border-white/20 shadow-lg"
-                    title="Alterar imagem"
+                onClick={() => fileInputRef.current?.click()}
+                className="absolute top-3 right-3 z-30 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-md opacity-0 group-hover/image:opacity-100 transition-opacity border border-white/20 shadow-lg"
+                title={t?.change_image || "Alterar imagem"}
                 >
-                    <ImagePlus className="w-4 h-4" />
+                <ImagePlus className="w-4 h-4" />
                 </button>
                 {image_url ? (
                     <motion.img 
@@ -94,7 +94,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate }, ref) => {
                             )}
                         </div>
                         <h2 className="text-white font-extrabold text-xl md:text-2xl leading-tight tracking-tight drop-shadow-xl text-shadow-sm">
-                            {title || "Sem título disponível"}
+                            {title || t?.no_title || "Sem título disponível"}
                         </h2>
                      </motion.div>
                 </div>
@@ -135,11 +135,11 @@ const ResultCard = forwardRef(({ data, onImageUpdate }, ref) => {
                     <div className="flex flex-col gap-1">
                         <div className="flex items-center gap-1.5 text-slate-400 font-medium">
                             <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-                            <span className="text-slate-400">Fonte: <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
+                            <span className="text-slate-400">{t?.source_label || "Fonte:"} <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
                         </div>
                         {(author || published_date) && (
                             <div className="text-[10px] text-slate-400 pl-3.5">
-                                {author && <span>por {author}</span>}
+                                {author && <span>{t?.by_label || "por"} {author}</span>}
                                 {author && published_date && <span> • </span>}
                                 {published_date && <span>{published_date}</span>}
                             </div>

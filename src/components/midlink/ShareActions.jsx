@@ -3,17 +3,15 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, Facebook, Linkedin, Twitter, Share2, Download, ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 
-export default function ShareActions({ data, onDownload, isDownloading }) {
+export default function ShareActions({ data, onDownload, isDownloading, t }) {
     if (!data) return null;
 
     const shareUrl = data.original_url || window.location.href;
     const shareText = `${data.title} - ${data.summary}`;
 
-    // Social sharing logic removed as requested
-
     const copyToClipboard = () => {
         navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
-        toast.success("Texto e link copiados!");
+        toast.success(t.copy_success);
     };
 
     return (
@@ -29,11 +27,11 @@ export default function ShareActions({ data, onDownload, isDownloading }) {
                          {isDownloading ? (
                             <span className="flex items-center gap-2">
                                 <span className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                                Baixando...
+                                {t.downloading}
                             </span>
                         ) : (
                             <span className="flex items-center gap-2">
-                                <Download className="w-4 h-4" /> Baixar Card
+                                <Download className="w-4 h-4" /> {t.download_btn}
                             </span>
                         )}
                     </Button>
@@ -42,7 +40,7 @@ export default function ShareActions({ data, onDownload, isDownloading }) {
                         variant="outline" 
                         onClick={copyToClipboard}
                         className="rounded-full h-12 w-12 p-0 border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm"
-                        title="Copiar Link"
+                        title={t.copy_btn}
                     >
                         <Share2 className="w-4 h-4" />
                     </Button>

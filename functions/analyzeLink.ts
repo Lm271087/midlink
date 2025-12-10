@@ -3,11 +3,18 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.4';
 Deno.serve(async (req) => {
     try {
         const base44 = createClientFromRequest(req);
-        const { url } = await req.json();
+        const { url, language } = await req.json();
 
         if (!url) {
             return Response.json({ error: 'URL is required' }, { status: 400 });
         }
+
+        const targetLanguage = language || 'pt-BR';
+        const languageName = {
+            'pt-BR': 'Portuguese (Brazil)',
+            'es-419': 'Spanish (Latin America)',
+            'en-US': 'English (US)'
+        }[targetLanguage] || 'Portuguese';
 
         // 1. Invoke LLM to analyze the URL
         // We ask the LLM to browse the URL (add_context_from_internet: true) and extract details
@@ -17,24 +24,25 @@ Deno.serve(async (req) => {
 
             Task:
             1. Visit the page/video and analyze its main content comprehensively.
+            2. EXTRACT AND TRANSLATE ALL CONTENT TO: ${languageName}.
 
-            2. If it is a VIDEO (YouTube, Vimeo, etc.):
-               - Title: Video title.
-               - Summary: Create a rich summary (3-4 sentences) that combines the video description with insights from the top/most relevant comments to capture the community sentiment or additional context.
-               - Key Points: Extract 3-5 MAIN TOPICS or IDEAS discussed. Focus on the core value/lessons of the video.
+            3. If it is a VIDEO (YouTube, Vimeo, etc.):
+               - Title: Video title (Translate to ${languageName}).
+               - Summary: Create a rich summary (3-4 sentences) in ${languageName} that combines the video description with insights from the top/most relevant comments to capture the community sentiment or additional context.
+               - Key Points: Extract 3-5 MAIN TOPICS or IDEAS discussed (in ${languageName}). Focus on the core value/lessons of the video.
                - Author: Channel/Creator Name.
                - Published Date: Upload date.
-               - Content Type: "Video" (or specific like "Video Tutorial", "Video Essay").
+               - Content Type: "Video" (or specific like "Video Tutorial", "Video Essay") - Translate label to ${languageName}.
                - Image: High-res thumbnail.
                - Source Name: Platform (e.g., "YouTube").
 
-            3. If it is a WEB PAGE:
-               - Title: Main headline.
-               - Summary: 2-3 sentence summary capturing the essence.
-               - Key Points: 3-5 key takeaways.
+            4. If it is a WEB PAGE:
+               - Title: Main headline (Translate to ${languageName}).
+               - Summary: 2-3 sentence summary capturing the essence (in ${languageName}).
+               - Key Points: 3-5 key takeaways (in ${languageName}).
                - Author: Article author or "Editorial Team".
                - Published Date: Date of publication (YYYY-MM-DD format preferred, or human readable).
-               - Content Type: Classify as "News", "Technical Article", "Opinion", "Blog Post", "Paper", etc.
+               - Content Type: Classify as "News", "Technical Article", "Opinion", "Blog Post", "Paper", etc. - Translate label to ${languageName}.
                - Image: Main visual.
                - Source Name: Website Brand Name.
 

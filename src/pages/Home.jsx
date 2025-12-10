@@ -3,6 +3,8 @@ import { base44 } from "@/api/base44Client";
 import UrlForm from "@/components/midlink/UrlForm";
 import ResultCard from "@/components/midlink/ResultCard";
 import ShareActions from "@/components/midlink/ShareActions";
+import LanguageSelector from "@/components/midlink/LanguageSelector";
+import { translations } from "@/utils/translations";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { AlertCircle } from "lucide-react";
@@ -15,7 +17,10 @@ export default function HomePage() {
     const [isLoading, setIsLoading] = useState(false);
     const [isDownloading, setIsDownloading] = useState(false);
     const [error, setError] = useState(null);
+    const [language, setLanguage] = useState('pt-BR');
     const cardRef = useRef(null);
+
+    const t = translations[language];
 
     const handleDownload = async () => {
         if (!cardRef.current) return;
@@ -39,10 +44,10 @@ export default function HomePage() {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            toast.success("Download iniciado!");
+            toast.success(t.download_start);
         } catch (err) {
             console.error("Erro no download:", err);
-            toast.error("Erro ao gerar imagem", { description: "Tente novamente." });
+            toast.error(t.download_error, { description: t.download_retry });
         } finally {
             setIsDownloading(false);
         }
@@ -54,7 +59,7 @@ export default function HomePage() {
         setResult(null);
 
         try {
-            const response = await base44.functions.invoke('analyzeLink', { url });
+            const response = await base44.functions.invoke('analyzeLink', { url, language });
             
             if (response.data.error) {
                 throw new Error(response.data.error);
@@ -65,34 +70,38 @@ export default function HomePage() {
             const analysisData = response.data.data;
             
             if (!analysisData) {
-                 throw new Error("Não foi possível extrair dados desta URL.");
+                 throw new Error(t.failed_extract);
             }
 
             // Enrich with original url for sharing
             setResult({ ...analysisData, original_url: url });
         } catch (err) {
             console.error(err);
-            setError(err.message || "Ocorreu um erro ao analisar o link. Tente novamente.");
-            toast.error("Falha na análise", { description: "Verifique o link ou tente outro site." });
+            setError(err.message || t.analyze_error);
+            toast.error(t.analyze_fail_title, { description: t.analyze_error });
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#FAFAFA] text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
+        <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6 bg-[#FAFAFA] text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
             {/* Subtle Background Pattern */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50/50 via-white/50 to-purple-50/50 pointer-events-none"></div>
 
-            <div className="w-full max-w-4xl space-y-8 relative z-10">
+            <div className="absolute top-4 right-4 z-50">
+                <LanguageSelector currentLang={language} onLanguageChange={setLanguage} />
+            </div>
+
+            <div className="w-full max-w-4xl space-y-8 relative z-10 pt-10 md:pt-0">
                 
                 {/* Input Section - smoothly transitions when result is present */}
                 <motion.div 
                     layout
                     className={`transition-all duration-700 ease-spring ${result ? "scale-90 opacity-60 hover:opacity-100 hover:scale-95" : "scale-100"}`}
                 >
-                    <UrlForm onSubmit={handleAnalyze} isLoading={isLoading} />
+                    <UrlForm onSubmit={handleAnalyze} isLoading={isLoading} t={t} />
                 </motion.div>
 
                 {/* Error Display */}

@@ -5,7 +5,7 @@ import { Loader2, Sparkles, ArrowRight, ClipboardPaste } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 
-export default function UrlForm({ onSubmit, isLoading }) {
+export default function UrlForm({ onSubmit, isLoading, t }) {
     const [url, setUrl] = useState("");
     const [error, setError] = useState("");
 
@@ -14,23 +14,23 @@ export default function UrlForm({ onSubmit, isLoading }) {
             const text = await navigator.clipboard.readText();
             if (text) {
                 setUrl(text);
-                toast.success("Link colado!");
+                toast.success(t.paste_success);
             }
         } catch (err) {
-            toast.error("Não foi possível acessar a área de transferência.");
+            toast.error(t.paste_error);
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!url) {
-            setError("Por favor, insira uma URL.");
+            setError(t.error_empty);
             return;
         }
         try {
             new URL(url);
         } catch (_) {
-            setError("Por favor, insira uma URL válida (inclua http:// ou https://).");
+            setError(t.error_invalid);
             return;
         }
         setError("");
@@ -38,7 +38,7 @@ export default function UrlForm({ onSubmit, isLoading }) {
     };
 
     return (
-        <div className="w-full max-w-2xl mx-auto text-center">
+        <div className="w-full max-w-2xl mx-auto text-center px-4">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -58,34 +58,35 @@ export default function UrlForm({ onSubmit, isLoading }) {
                         </div>
                     </div>
                     <p className="text-lg md:text-xl text-slate-500 max-w-lg mx-auto font-light leading-relaxed">
-                        Crie cards visuais impressionantes a partir de qualquer link, instantaneamente.
+                        {t.subtitle}
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="relative max-w-xl mx-auto group pt-4">
+                <form onSubmit={handleSubmit} className="relative max-w-xl mx-auto group pt-4 w-full">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 transition duration-1000 group-hover:duration-200 group-hover:opacity-75"></div>
                     <div className="relative flex p-2 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200/50 transition-all focus-within:ring-indigo-500/30 focus-within:shadow-xl focus-within:shadow-indigo-100/50">
-                        <div className="flex-1 flex items-center pr-2">
+                        <div className="flex-1 flex items-center pr-2 min-w-0">
                             <Input
                                 type="url"
-                                placeholder="Cole seu link aqui..."
+                                placeholder={t.placeholder}
                                 value={url}
                                 onChange={(e) => {
                                     setUrl(e.target.value);
                                     if(error) setError("");
                                 }}
-                                className="w-full border-none shadow-none focus-visible:ring-0 text-lg h-14 bg-transparent placeholder:text-slate-300 font-medium"
+                                className="w-full border-none shadow-none focus-visible:ring-0 text-base md:text-lg h-14 bg-transparent placeholder:text-slate-300 font-medium"
                                 disabled={isLoading}
                             />
                             <Button
                                 type="button"
                                 onClick={handlePaste}
                                 variant="ghost"
-                                className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg mr-2 h-10 w-10 p-0 transition-colors"
-                                title={url ? "Substituir link" : "Colar link"}
+                                className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg mr-2 h-10 w-10 p-0 transition-colors shrink-0"
+                                title={url ? t.replace_link : t.paste_link}
                             >
                                 <ClipboardPaste className={`w-5 h-5 ${url ? 'text-indigo-500' : ''}`} />
                             </Button>
+                        </div>
                         </div>
                         <Button 
                             type="submit" 
