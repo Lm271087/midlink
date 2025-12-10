@@ -55,7 +55,7 @@ const ResultCard = forwardRef(({ data }, ref) => {
                      >
                         <div className="flex gap-2 mb-3">
                             <span className="inline-flex px-3 py-1 bg-teal-500/90 backdrop-blur-sm shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-teal-400/50">
-                                {source_name || "News"}
+                                {source_name || "Web"}
                             </span>
                             {content_type && (
                                 <span className="inline-flex px-3 py-1 bg-white/20 backdrop-blur-md shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-white/30">
@@ -63,15 +63,15 @@ const ResultCard = forwardRef(({ data }, ref) => {
                                 </span>
                             )}
                         </div>
-                        <h2 className="text-white font-extrabold text-2xl leading-tight line-clamp-3 tracking-tight drop-shadow-lg text-shadow-sm">
-                            {title}
+                        <h2 className="text-white font-extrabold text-xl md:text-2xl leading-tight line-clamp-3 tracking-tight drop-shadow-lg text-shadow-sm">
+                            {title || "Sem título disponível"}
                         </h2>
                      </motion.div>
                 </div>
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 p-6 flex flex-col bg-white">
+            <div className="flex-1 p-6 flex flex-col bg-white min-h-[200px]">
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
