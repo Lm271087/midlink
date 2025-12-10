@@ -56,7 +56,7 @@ export default function ResultCard({ data }) {
                 </div>
 
                 <div className="flex-1 space-y-3 relative z-10">
-                    {key_points && key_points.map((point, idx) => (
+                    {key_points && key_points.slice(0, 3).map((point, idx) => (
                         <div key={idx} className="flex items-start gap-3">
                             <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0" />
                             <p className="text-slate-800 text-sm font-semibold leading-snug">
