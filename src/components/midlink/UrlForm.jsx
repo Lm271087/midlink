@@ -87,7 +87,6 @@ export default function UrlForm({ onSubmit, isLoading, t }) {
                                 <ClipboardPaste className={`w-5 h-5 ${url ? 'text-indigo-500' : ''}`} />
                             </Button>
                         </div>
-                        </div>
                         <Button 
                             type="submit" 
                             disabled={isLoading}
