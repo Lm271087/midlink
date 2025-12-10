@@ -32,10 +32,18 @@ export default function UrlForm({ onSubmit, isLoading }) {
                 transition={{ duration: 0.5 }}
                 className="space-y-6"
             >
-                <div className="space-y-4">
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-slate-900">
-                        mid<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">link</span>
-                    </h1>
+                <div className="space-y-6 flex flex-col items-center">
+                    <div className="relative inline-flex items-center justify-center">
+                        <div className="absolute inset-0 bg-indigo-500/20 blur-3xl rounded-full"></div>
+                        <div className="flex items-center gap-3 relative z-10">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20 rotate-3 transition-transform hover:rotate-6">
+                                <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                            </div>
+                            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-slate-900">
+                                mid<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">link</span>
+                            </h1>
+                        </div>
+                    </div>
                     <p className="text-lg md:text-xl text-slate-500 max-w-lg mx-auto font-light leading-relaxed">
                         Crie cards visuais impressionantes a partir de qualquer link, instantaneamente.
                     </p>

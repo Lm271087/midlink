@@ -44,7 +44,7 @@ const ResultCard = forwardRef(({ data }, ref) => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                      >
-                        <span className="inline-flex px-3 py-1 bg-indigo-600/90 backdrop-blur-sm shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full mb-3 border border-indigo-500/50">
+                        <span className="inline-flex px-3 py-1 bg-teal-500/90 backdrop-blur-sm shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full mb-3 border border-teal-400/50">
                             {source_name || "News"}
                         </span>
                         <h2 className="text-white font-extrabold text-2xl leading-tight line-clamp-3 tracking-tight drop-shadow-lg text-shadow-sm">
@@ -87,10 +87,10 @@ const ResultCard = forwardRef(({ data }, ref) => {
                 {/* Footer */}
                 <div className="mt-6 pt-5 border-t border-slate-50 flex justify-between items-center text-xs">
                     <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                        <span>Fonte: <span className="text-slate-700">{source_name || "Web"}</span></span>
+                        <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                        <span className="text-slate-400">Fonte: <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
                     </div>
-                    <div className="font-medium text-indigo-500 tracking-wide">
+                    <div className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 tracking-wide opacity-80">
                         midlink.app
                     </div>
                 </div>
