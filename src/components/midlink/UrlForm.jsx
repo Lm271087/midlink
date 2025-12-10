@@ -81,10 +81,10 @@ export default function UrlForm({ onSubmit, isLoading }) {
                                 type="button"
                                 onClick={handlePaste}
                                 variant="ghost"
-                                className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg mr-2 h-10 w-10 p-0"
+                                className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg mr-2 h-10 w-10 p-0 transition-colors"
                                 title={url ? "Substituir link" : "Colar link"}
                             >
-                                <ClipboardPaste className="w-5 h-5" />
+                                <ClipboardPaste className={`w-5 h-5 ${url ? 'text-indigo-500' : ''}`} />
                             </Button>
                         </div>
                         <Button 

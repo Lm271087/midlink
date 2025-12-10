@@ -65,7 +65,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate }, ref) => {
                 )}
 
                 {/* Gradient Overlay for Text Readability - Enhanced */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10"></div>
 
                 {/* Video Play Overlay */}
                 {(content_type?.toLowerCase().includes('video') || ['youtube', 'vimeo', 'dailymotion', 'youtu.be'].some(v => (source_name || '').toLowerCase().includes(v))) && (
@@ -93,7 +93,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate }, ref) => {
                                 </span>
                             )}
                         </div>
-                        <h2 className="text-white font-extrabold text-xl md:text-2xl leading-tight line-clamp-3 tracking-tight drop-shadow-lg text-shadow-sm">
+                        <h2 className="text-white font-extrabold text-xl md:text-2xl leading-tight tracking-tight drop-shadow-xl text-shadow-sm">
                             {title || "Sem título disponível"}
                         </h2>
                      </motion.div>
