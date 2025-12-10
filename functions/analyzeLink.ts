@@ -25,35 +25,24 @@ Deno.serve(async (req) => {
             Task:
             1. Visit the page/video and analyze its main content comprehensively.
             2. EXTRACT AND TRANSLATE ALL CONTENT TO: ${languageName}.
-            3. Deeply analyze the content's context, including:
-               - General Sentiment (Positive, Critical, Neutral, Inspiring, etc.)
-               - Author's Intent (To Inform, Persuade, Sell, Entertain, etc.)
-               - Target Audience (e.g., Developers, General Public, Investors)
-               - Potential Counter-arguments or Alternative Viewpoints.
 
-            4. If it is a VIDEO (YouTube, Vimeo, etc.):
+            3. If it is a VIDEO (YouTube, Vimeo, etc.):
                - Title: Video title (Translate to ${languageName}).
-               - Summary: Create a rich, high-quality summary (4-5 sentences) in ${languageName}. It MUST include the core message, the author's intent, and the general sentiment. Mention any significant counter-arguments or community reaction if relevant.
+               - Summary: Create a rich, high-quality summary (4-5 sentences) in ${languageName}. It MUST include the core message.
                - Key Points: Extract 3-5 MAIN TOPICS, INSIGHTS, or LESSONS (in ${languageName}).
                - Author: Channel/Creator Name.
                - Published Date: Upload date.
                - Content Type: "Video" (or specific like "Video Tutorial", "Video Essay") - Translate label to ${languageName}.
-               - Target Audience: Who is this for? (in ${languageName}).
-               - Sentiment: One or two words describing the tone (in ${languageName}).
-               - Author Intent: One phrase describing the intent (in ${languageName}).
                - Image: High-res thumbnail.
                - Source Name: Platform (e.g., "YouTube").
 
-            5. If it is a WEB PAGE:
+            4. If it is a WEB PAGE:
                - Title: Main headline (Translate to ${languageName}).
-               - Summary: Create a rich, high-quality summary (4-5 sentences) in ${languageName}. It MUST capture the essence, the author's intent, and the intended audience. Mention any alternative viewpoints discussed.
+               - Summary: Create a rich, high-quality summary (4-5 sentences) in ${languageName}. It MUST capture the essence.
                - Key Points: 3-5 key takeaways/insights (in ${languageName}).
                - Author: Article author or "Editorial Team".
                - Published Date: Date of publication.
                - Content Type: Classify as "News", "Technical Article", "Opinion", "Blog Post", "Paper", etc. - Translate label to ${languageName}.
-               - Target Audience: Who is this for? (in ${languageName}).
-               - Sentiment: One or two words describing the tone (in ${languageName}).
-               - Author Intent: One phrase describing the intent (in ${languageName}).
                - Image: Main visual.
                - Source Name: Website Brand Name.
 
@@ -70,10 +59,7 @@ Deno.serve(async (req) => {
                     source_name: { type: "string" },
                     author: { type: "string" },
                     published_date: { type: "string" },
-                    content_type: { type: "string" },
-                    target_audience: { type: "string" },
-                    sentiment: { type: "string" },
-                    author_intent: { type: "string" }
+                    content_type: { type: "string" }
                 },
                 required: ["title", "summary", "key_points", "source_name"]
             }
