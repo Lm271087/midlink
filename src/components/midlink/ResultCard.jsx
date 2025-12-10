@@ -34,8 +34,8 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 accept="image/*"
             />
 
-            {/* Header Image Section - Taller for 9:16 */}
-            <div className="relative h-[45%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
+            {/* Header Image Section */}
+            <div className="relative h-[35%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
                 {/* Image Edit Button */}
                 <button
                 onClick={() => fileInputRef.current?.click()}
@@ -76,7 +76,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 )}
                 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 pt-24 z-10 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-5 pt-24 z-10 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent">
                      <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -100,14 +100,14 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 p-6 flex flex-col bg-white min-h-[200px]">
+            <div className="flex-1 p-5 flex flex-col bg-white min-h-[200px]">
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-6"
+                    className="mb-4"
                 >
-                    <p className="text-slate-600 text-[15px] leading-relaxed font-medium">
+                    <p className="text-slate-600 text-sm leading-relaxed font-medium">
                         {summary}
                     </p>
                 </motion.div>

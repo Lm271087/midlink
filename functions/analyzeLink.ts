@@ -29,8 +29,8 @@ Deno.serve(async (req) => {
 
             3. If it is a VIDEO (YouTube, Vimeo, etc.):
                - Title: Video title (Translate to ${languageName}).
-               - Summary: Create an engaging, narrative 'story-style' summary (3-4 sentences) in ${languageName}. Tell the story of the video's content clearly and concisely.
-               - Key Points: Extract exactly 3-5 of the MOST IMPORTANT facts, insights, or takeaways (in ${languageName}). Make them punchy and direct.
+               - Summary: Create a concise, engaging 'story-style' summary (2-3 sentences max) in ${languageName}. Focus on the most critical narrative arc.
+               - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
                - Author: Channel/Creator Name.
                - Published Date: Upload date.
                - Content Type: "Video" (or specific like "Video Tutorial", "Video Essay") - Translate label to ${languageName}.
@@ -39,8 +39,8 @@ Deno.serve(async (req) => {
 
             4. If it is a WEB PAGE:
                - Title: Main headline (Translate to ${languageName}).
-               - Summary: Create an engaging, narrative 'story-style' summary (3-4 sentences) in ${languageName}. Tell the story of what happened or what the article discusses as if explaining it to a friend.
-               - Key Points: Extract exactly 3-5 of the MOST IMPORTANT facts or key takeaways (in ${languageName}). Make them punchy and direct.
+               - Summary: Create a concise, engaging 'story-style' summary (2-3 sentences max) in ${languageName}. Focus on the main story.
+               - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
                - Author: Article author or "Editorial Team".
                - Published Date: Date of publication.
                - Content Type: Classify as "News", "Technical Article", "Opinion", "Blog Post", "Paper", etc. - Translate label to ${languageName}.
