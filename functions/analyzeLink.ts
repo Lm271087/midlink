@@ -25,6 +25,7 @@ Deno.serve(async (req) => {
             Task:
             1. Visit the page/video and analyze its main content comprehensively.
             2. EXTRACT AND TRANSLATE ALL CONTENT TO: ${languageName}.
+            3. If the page content is not directly accessible, use the page metadata, title, and standard knowledge about the URL to generate the best possible summary and title. NEVER return empty fields.
 
             3. If it is a VIDEO (YouTube, Vimeo, etc.):
                - Title: Video title (Translate to ${languageName}).

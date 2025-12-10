@@ -23,7 +23,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
     return (
         <motion.div
             ref={ref}
-            className="w-full max-w-[400px] mx-auto bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col ring-1 ring-black/5 relative group/card"
+            className="w-full max-w-[400px] mx-auto aspect-[9/16] bg-white rounded-[32px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col ring-1 ring-black/5 relative group/card"
         >
             {/* Hidden File Input */}
             <input 
@@ -34,8 +34,8 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 accept="image/*"
             />
 
-            {/* Header Image Section */}
-            <div className="relative h-64 w-full bg-slate-900 overflow-hidden shrink-0 group/image">
+            {/* Header Image Section - Taller for 9:16 */}
+            <div className="relative h-[45%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
                 {/* Image Edit Button */}
                 <button
                 onClick={() => fileInputRef.current?.click()}
@@ -64,8 +64,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                     </div>
                 )}
 
-                {/* Gradient Overlay for Text Readability - Enhanced */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10"></div>
+
 
                 {/* Video Play Overlay */}
                 {(content_type?.toLowerCase().includes('video') || ['youtube', 'vimeo', 'dailymotion', 'youtu.be'].some(v => (source_name || '').toLowerCase().includes(v))) && (
@@ -77,7 +76,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 )}
                 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 z-10">
+                <div className="absolute bottom-0 left-0 right-0 p-6 pt-24 z-10 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent">
                      <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -113,8 +112,8 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                     </p>
                 </motion.div>
 
-                <div className="flex-1 space-y-3.5">
-                    {key_points && key_points.slice(0, 3).map((point, idx) => (
+                <div className="flex-1 space-y-4 overflow-y-auto pr-2 custom-scrollbar">
+                    {key_points && key_points.slice(0, 4).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -122,18 +121,16 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                             key={idx} 
                             className="flex items-start gap-3 group"
                         >
-                            <div className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-2 shrink-0 group-hover:bg-teal-500 transition-colors shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
-                            <p className="text-slate-700 text-sm font-medium leading-snug tracking-tight group-hover:text-slate-900 transition-colors">
+                            <div className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 shrink-0 group-hover:bg-teal-500 transition-colors shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
+                            <p className="text-slate-700 text-sm font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
                                 {point}
                             </p>
                         </motion.div>
                     ))}
                 </div>
 
-
-
                 {/* Footer */}
-                <div className="mt-6 pt-5 border-t border-slate-50 flex justify-between items-center text-xs">
+                <div className="mt-auto pt-5 border-t border-slate-50 flex justify-between items-center text-xs shrink-0">
                     <div className="flex flex-col gap-1">
                         <div className="flex items-center gap-1.5 text-slate-400 font-medium">
                             <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
