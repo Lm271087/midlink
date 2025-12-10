@@ -25,9 +25,11 @@ Deno.serve(async (req) => {
             Task:
             1. Visit the page/video and analyze its main content comprehensively.
             2. EXTRACT AND TRANSLATE ALL CONTENT TO: ${languageName}.
-            3. If the page content is not directly accessible, use the page metadata, title, and standard knowledge about the URL to generate the best possible summary and title. NEVER return empty fields.
+            3. **CRITICAL FOR VIDEO LINKS (YouTube, TikTok, Instagram, etc.):**
+               - If you cannot watch the video, YOU MUST extract details from the **page metadata** (og:title, og:description, json-ld), **video description**, **comments**, and **page title**.
+               - NEVER return empty fields for a video. Use the text surrounding the video player to reconstruct the content.
 
-            3. If it is a VIDEO (YouTube, Vimeo, etc.):
+            4. If it is a VIDEO (YouTube, Vimeo, etc.):
                - Title: Video title (Translate to ${languageName}).
                - Summary: Create a concise, engaging 'story-style' summary (2-3 sentences max) in ${languageName}. Focus on the most critical narrative arc.
                - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
@@ -37,7 +39,7 @@ Deno.serve(async (req) => {
                - Image: High-res thumbnail.
                - Source Name: Platform (e.g., "YouTube").
 
-            4. If it is a WEB PAGE:
+            5. If it is a WEB PAGE:
                - Title: Main headline (Translate to ${languageName}).
                - Summary: Create a concise, engaging 'story-style' summary (2-3 sentences max) in ${languageName}. Focus on the main story.
                - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
