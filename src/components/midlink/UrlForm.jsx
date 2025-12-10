@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, Sparkles, ArrowRight } from "lucide-react";
+import { Loader2, Sparkles, ArrowRight, ClipboardPaste } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export default function UrlForm({ onSubmit, isLoading }) {
     const [url, setUrl] = useState("");
     const [error, setError] = useState("");
+
+    const handlePaste = async () => {
+        try {
+            const text = await navigator.clipboard.readText();
+            if (text) {
+                setUrl(text);
+                toast.success("Link colado!");
+            }
+        } catch (err) {
+            toast.error("Não foi possível acessar a área de transferência.");
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();

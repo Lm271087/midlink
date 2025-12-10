@@ -1,19 +1,49 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import { motion } from "framer-motion";
-import { Quote, PlayCircle } from "lucide-react";
+import { Quote, PlayCircle, ImagePlus, Pencil } from "lucide-react";
 
-const ResultCard = forwardRef(({ data }, ref) => {
+const ResultCard = forwardRef(({ data, onImageUpdate }, ref) => {
+    const fileInputRef = useRef(null);
+
     if (!data) return null;
 
     const { title, summary, key_points, image_url, source_name, author, published_date, content_type } = data;
 
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (file && onImageUpdate) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                onImageUpdate(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <motion.div
             ref={ref}
-            className="w-full max-w-[400px] mx-auto bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col ring-1 ring-black/5 relative"
+            className="w-full max-w-[400px] mx-auto bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col ring-1 ring-black/5 relative group/card"
         >
+            {/* Hidden File Input */}
+            <input 
+                type="file" 
+                ref={fileInputRef} 
+                onChange={handleImageUpload} 
+                className="hidden" 
+                accept="image/*"
+            />
+
             {/* Header Image Section */}
-            <div className="relative h-64 w-full bg-slate-900 overflow-hidden shrink-0">
+            <div className="relative h-64 w-full bg-slate-900 overflow-hidden shrink-0 group/image">
+                {/* Image Edit Button */}
+                <button
+                    onClick={() => fileInputRef.current?.click()}
+                    className="absolute top-3 right-3 z-30 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-md opacity-0 group-hover/image:opacity-100 transition-opacity border border-white/20 shadow-lg"
+                    title="Alterar imagem"
+                >
+                    <ImagePlus className="w-4 h-4" />
+                </button>
                 {image_url ? (
                     <motion.img 
                         initial={{ scale: 1.1 }}

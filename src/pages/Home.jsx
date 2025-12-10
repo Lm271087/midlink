@@ -126,10 +126,14 @@ export default function HomePage() {
                             className="space-y-8"
                         >
                             <div className="flex justify-center">
-                                <ResultCard ref={cardRef} data={result} />
+                                <ResultCard 
+                                    ref={cardRef} 
+                                    data={result} 
+                                    onImageUpdate={(newImage) => setResult(prev => ({ ...prev, image_url: newImage }))}
+                                />
                             </div>
                             <ShareActions 
-                                data={result} 
+                                data={result}
                                 onDownload={handleDownload} 
                                 isDownloading={isDownloading} 
                             />
