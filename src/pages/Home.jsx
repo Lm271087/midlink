@@ -138,6 +138,7 @@ export default function HomePage() {
                                 <ResultCard 
                                     ref={cardRef} 
                                     data={result} 
+                                    t={t}
                                     onImageUpdate={(newImage) => setResult(prev => ({ ...prev, image_url: newImage }))}
                                 />
                             </div>
@@ -145,6 +146,7 @@ export default function HomePage() {
                                 data={result}
                                 onDownload={handleDownload} 
                                 isDownloading={isDownloading} 
+                                t={t}
                             />
                         </motion.div>
                     )}
