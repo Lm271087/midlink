@@ -5,7 +5,7 @@ import { Quote, PlayCircle } from "lucide-react";
 const ResultCard = forwardRef(({ data }, ref) => {
     if (!data) return null;
 
-    const { title, summary, key_points, image_url, source_name } = data;
+    const { title, summary, key_points, image_url, source_name, author, published_date, content_type } = data;
 
     return (
         <motion.div
@@ -53,9 +53,16 @@ const ResultCard = forwardRef(({ data }, ref) => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                      >
-                        <span className="inline-flex px-3 py-1 bg-teal-500/90 backdrop-blur-sm shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full mb-3 border border-teal-400/50">
-                            {source_name || "News"}
-                        </span>
+                        <div className="flex gap-2 mb-3">
+                            <span className="inline-flex px-3 py-1 bg-teal-500/90 backdrop-blur-sm shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-teal-400/50">
+                                {source_name || "News"}
+                            </span>
+                            {content_type && (
+                                <span className="inline-flex px-3 py-1 bg-white/20 backdrop-blur-md shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-white/30">
+                                    {content_type}
+                                </span>
+                            )}
+                        </div>
                         <h2 className="text-white font-extrabold text-2xl leading-tight line-clamp-3 tracking-tight drop-shadow-lg text-shadow-sm">
                             {title}
                         </h2>
@@ -95,9 +102,18 @@ const ResultCard = forwardRef(({ data }, ref) => {
 
                 {/* Footer */}
                 <div className="mt-6 pt-5 border-t border-slate-50 flex justify-between items-center text-xs">
-                    <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-                        <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-                        <span className="text-slate-400">Fonte: <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
+                    <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1.5 text-slate-400 font-medium">
+                            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                            <span className="text-slate-400">Fonte: <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
+                        </div>
+                        {(author || published_date) && (
+                            <div className="text-[10px] text-slate-400 pl-3.5">
+                                {author && <span>por {author}</span>}
+                                {author && published_date && <span> • </span>}
+                                {published_date && <span>{published_date}</span>}
+                            </div>
+                        )}
                     </div>
                     <div className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 tracking-wide opacity-80">
                         midlink.app

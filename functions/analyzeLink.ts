@@ -16,29 +16,29 @@ Deno.serve(async (req) => {
             Analyze the following URL: ${url}
 
             Task:
-            1. Visit the page/video and analyze its main content.
+            1. Visit the page/video and analyze its main content comprehensively.
+
             2. If it is a VIDEO (YouTube, Vimeo, etc.):
                - Title: Video title.
-               - Summary: Engaging summary of what the video is about (max 2 sentences).
-               - Key Points: Extract 3-5 MAIN IDEAS or INSIGHTS. These should be informative and valuable to the user, summarizing the core message or lessons of the video.
-               - Image: The highest quality video thumbnail available.
-               - Source Name: The platform name (e.g., "YouTube", "Vimeo").
+               - Summary: detailed and engaging summary (2-3 sentences). Include context from description or top comments if relevant.
+               - Key Points: Extract 3-5 ACTIONABLE INSIGHTS or MAIN IDEAS. If it's a tutorial, list steps. If it's an opinion, list arguments.
+               - Author: Channel name or Creator.
+               - Published Date: Video upload date (approximate if not exact).
+               - Content Type: "Video" or specific genre like "Tutorial", "Review".
+               - Image: Highest quality thumbnail.
+               - Source Name: Platform (e.g., "YouTube").
 
-            3. If it is a WEB PAGE (Article, Blog, etc.):
-               - Title: Article title.
-               - Summary: Concise summary (max 2 sentences).
-               - Key Points: 3-5 main bullet points.
-               - Image: Main article image or og:image.
-               - Source Name: Website name (e.g., "CNN", "TechCrunch").
+            3. If it is a WEB PAGE:
+               - Title: Main headline.
+               - Summary: 2-3 sentence summary capturing the essence.
+               - Key Points: 3-5 key takeaways.
+               - Author: Article author or "Editorial Team".
+               - Published Date: Date of publication (YYYY-MM-DD format preferred, or human readable).
+               - Content Type: Classify as "News", "Technical Article", "Opinion", "Blog Post", "Paper", etc.
+               - Image: Main visual.
+               - Source Name: Website Brand Name.
 
-            Return ONLY a valid JSON object with this structure:
-            {
-                "title": "string",
-                "summary": "string",
-                "key_points": ["string", "string", ...],
-                "image_url": "string or null",
-                "source_name": "string"
-            }
+            Return ONLY a valid JSON object.
             `,
             add_context_from_internet: true,
             response_json_schema: {
@@ -48,7 +48,10 @@ Deno.serve(async (req) => {
                     summary: { type: "string" },
                     key_points: { type: "array", items: { type: "string" } },
                     image_url: { type: "string" },
-                    source_name: { type: "string" }
+                    source_name: { type: "string" },
+                    author: { type: "string" },
+                    published_date: { type: "string" },
+                    content_type: { type: "string" }
                 },
                 required: ["title", "summary", "key_points", "source_name"]
             }
