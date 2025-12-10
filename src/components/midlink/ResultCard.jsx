@@ -7,7 +7,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
 
     if (!data) return null;
 
-    const { title, summary, key_points, image_url, source_name, author, published_date, content_type } = data;
+    const { title, summary, key_points, image_url, source_name, author, published_date, content_type, target_audience, sentiment, author_intent } = data;
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -129,6 +129,32 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Insights Section */}
+                {(target_audience || sentiment || author_intent) && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        className="mt-5 flex flex-wrap gap-2"
+                    >
+                         {target_audience && (
+                            <span className="inline-flex items-center px-2 py-1 rounded-md bg-slate-100 text-[10px] font-semibold text-slate-600 border border-slate-200">
+                                🎯 {target_audience}
+                            </span>
+                         )}
+                         {author_intent && (
+                            <span className="inline-flex items-center px-2 py-1 rounded-md bg-indigo-50 text-[10px] font-semibold text-indigo-600 border border-indigo-100">
+                                💡 {author_intent}
+                            </span>
+                         )}
+                         {sentiment && (
+                            <span className="inline-flex items-center px-2 py-1 rounded-md bg-emerald-50 text-[10px] font-semibold text-emerald-600 border border-emerald-100">
+                                ✨ {sentiment}
+                            </span>
+                         )}
+                    </motion.div>
+                )}
 
                 {/* Footer */}
                 <div className="mt-6 pt-5 border-t border-slate-50 flex justify-between items-center text-xs">
