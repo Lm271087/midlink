@@ -20,7 +20,7 @@ Deno.serve(async (req) => {
             2. If it is a VIDEO (YouTube, Vimeo, etc.):
                - Title: Video title.
                - Summary: Engaging summary of what the video is about (max 2 sentences).
-               - Key Points: 3-5 main takeaways or topics discussed in the video.
+               - Key Points: Extract 3-5 MAIN IDEAS or INSIGHTS. These should be informative and valuable to the user, summarizing the core message or lessons of the video.
                - Image: The highest quality video thumbnail available.
                - Source Name: The platform name (e.g., "YouTube", "Vimeo").
 
