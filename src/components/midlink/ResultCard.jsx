@@ -10,10 +10,10 @@ const ResultCard = forwardRef(({ data }, ref) => {
     return (
         <motion.div
             ref={ref}
-            className="w-full max-w-[380px] mx-auto bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col aspect-[4/5] ring-1 ring-black/5 relative"
+            className="w-full max-w-[400px] mx-auto bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col ring-1 ring-black/5 relative"
         >
             {/* Header Image Section */}
-            <div className="relative h-[40%] w-full bg-slate-50 overflow-hidden">
+            <div className="relative h-64 w-full bg-slate-900 overflow-hidden shrink-0">
                 {image_url ? (
                     <motion.img 
                         initial={{ scale: 1.1 }}
@@ -29,13 +29,13 @@ const ResultCard = forwardRef(({ data }, ref) => {
                         }}
                     />
                 ) : (
-                    <div className="w-full h-full bg-slate-100 flex items-center justify-center">
-                        <Quote className="w-12 h-12 text-slate-300" />
+                    <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                        <Quote className="w-12 h-12 text-slate-700" />
                     </div>
                 )}
-                
+
                 {/* Gradient Overlay for Text Readability - Enhanced */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-90"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
                 {/* Video Play Overlay */}
                 {(content_type?.toLowerCase().includes('video') || ['youtube', 'vimeo', 'dailymotion', 'youtu.be'].some(v => (source_name || '').toLowerCase().includes(v))) && (
