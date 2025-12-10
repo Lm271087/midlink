@@ -20,12 +20,12 @@ Deno.serve(async (req) => {
 
             2. If it is a VIDEO (YouTube, Vimeo, etc.):
                - Title: Video title.
-               - Summary: detailed and engaging summary (2-3 sentences). Include context from description or top comments if relevant.
-               - Key Points: Extract 3-5 ACTIONABLE INSIGHTS or MAIN IDEAS. If it's a tutorial, list steps. If it's an opinion, list arguments.
-               - Author: Channel name or Creator.
-               - Published Date: Video upload date (approximate if not exact).
-               - Content Type: "Video" or specific genre like "Tutorial", "Review".
-               - Image: Highest quality thumbnail.
+               - Summary: Create a rich summary (3-4 sentences) that combines the video description with insights from the top/most relevant comments to capture the community sentiment or additional context.
+               - Key Points: Extract 3-5 MAIN TOPICS or IDEAS discussed. Focus on the core value/lessons of the video.
+               - Author: Channel/Creator Name.
+               - Published Date: Upload date.
+               - Content Type: "Video" (or specific like "Video Tutorial", "Video Essay").
+               - Image: High-res thumbnail.
                - Source Name: Platform (e.g., "YouTube").
 
             3. If it is a WEB PAGE:
