@@ -4,7 +4,7 @@ import UrlForm from "@/components/midlink/UrlForm";
 import ResultCard from "@/components/midlink/ResultCard";
 import ShareActions from "@/components/midlink/ShareActions";
 import LanguageSelector from "@/components/midlink/LanguageSelector";
-import { translations } from "@/utils/translations";
+import { translations } from "@/components/midlink/translations";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { AlertCircle } from "lucide-react";
@@ -115,7 +115,7 @@ export default function HomePage() {
                         >
                             <Alert variant="destructive" className="border-red-100 bg-red-50/50 backdrop-blur-sm">
                                 <AlertCircle className="h-4 w-4" />
-                                <AlertTitle>Erro na análise</AlertTitle>
+                                <AlertTitle>{t.analyze_fail_title}</AlertTitle>
                                 <AlertDescription>
                                     {error}
                                 </AlertDescription>
