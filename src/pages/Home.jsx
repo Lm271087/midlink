@@ -126,9 +126,13 @@ export default function HomePage() {
                             className="space-y-8"
                         >
                             <div className="flex justify-center">
-                                <ResultCard data={result} />
+                                <ResultCard ref={cardRef} data={result} />
                             </div>
-                            <ShareActions data={result} />
+                            <ShareActions 
+                                data={result} 
+                                onDownload={handleDownload} 
+                                isDownloading={isDownloading} 
+                            />
                         </motion.div>
                     )}
                 </AnimatePresence>
