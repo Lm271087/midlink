@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Facebook, Linkedin, Twitter, Share2 } from "lucide-react";
+import { MessageCircle, Facebook, Linkedin, Twitter, Share2, Download, ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 
-export default function ShareActions({ data }) {
+export default function ShareActions({ data, onDownload, isDownloading }) {
     if (!data) return null;
 
     const shareUrl = data.original_url || window.location.href;
@@ -82,13 +82,36 @@ export default function ShareActions({ data }) {
                     <Linkedin className="w-5 h-5" />
                 </Button>
                 <div className="w-px h-8 bg-slate-200 mx-2 self-center hidden sm:block"></div>
-                <Button 
-                    variant="outline" 
-                    onClick={copyToClipboard}
-                    className="rounded-full h-12 px-6 border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm"
-                >
-                    <Share2 className="w-4 h-4 mr-2" /> Copiar Link
-                </Button>
+                <div className="w-px h-8 bg-slate-200 mx-2 self-center hidden sm:block"></div>
+                
+                <div className="flex gap-2">
+                    <Button 
+                        variant="default"
+                        onClick={onDownload}
+                        disabled={isDownloading}
+                        className="rounded-full h-12 px-6 bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg transition-all"
+                    >
+                         {isDownloading ? (
+                            <span className="flex items-center gap-2">
+                                <span className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                                Baixando...
+                            </span>
+                        ) : (
+                            <span className="flex items-center gap-2">
+                                <Download className="w-4 h-4" /> Baixar Card
+                            </span>
+                        )}
+                    </Button>
+                    
+                    <Button 
+                        variant="outline" 
+                        onClick={copyToClipboard}
+                        className="rounded-full h-12 w-12 p-0 border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm"
+                        title="Copiar Link"
+                    >
+                        <Share2 className="w-4 h-4" />
+                    </Button>
+                </div>
             </div>
         </div>
     );

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { motion } from "framer-motion";
-import { ExternalLink, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 
-export default function ResultCard({ data }) {
+const ResultCard = forwardRef(({ data }, ref) => {
     if (!data) return null;
 
-    const { title, summary, key_points, image_url, source_name, original_url } = data;
+    const { title, summary, key_points, image_url, source_name } = data;
 
     return (
         <motion.div
+            ref={ref}
             className="w-full max-w-[380px] mx-auto bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col aspect-[4/5] ring-1 ring-black/5 relative"
         >
             {/* Header Image Section */}
@@ -20,6 +21,7 @@ export default function ResultCard({ data }) {
                         transition={{ duration: 1.5, ease: "easeOut" }}
                         src={image_url} 
                         alt={title} 
+                        crossOrigin="anonymous"
                         className="w-full h-full object-cover"
                         onError={(e) => {
                             e.target.onerror = null; 
@@ -32,20 +34,20 @@ export default function ResultCard({ data }) {
                     </div>
                 )}
                 
-                {/* Gradient Overlay for Text Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                {/* Gradient Overlay for Text Readability - Enhanced */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-90"></div>
                 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 pt-12">
+                <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 z-10">
                      <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                      >
-                        <span className="inline-flex px-2.5 py-0.5 bg-white/20 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold uppercase tracking-wider rounded-full mb-3">
+                        <span className="inline-flex px-3 py-1 bg-indigo-600/90 backdrop-blur-sm shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full mb-3 border border-indigo-500/50">
                             {source_name || "News"}
                         </span>
-                        <h2 className="text-white font-bold text-xl leading-tight line-clamp-2 tracking-tight">
+                        <h2 className="text-white font-extrabold text-2xl leading-tight line-clamp-3 tracking-tight drop-shadow-lg text-shadow-sm">
                             {title}
                         </h2>
                      </motion.div>
@@ -95,4 +97,6 @@ export default function ResultCard({ data }) {
             </div>
         </motion.div>
     );
-}
+});
+
+export default ResultCard;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { base44 } from "@/api/base44Client";
 import UrlForm from "@/components/midlink/UrlForm";
 import ResultCard from "@/components/midlink/ResultCard";
@@ -8,11 +8,45 @@ import { toast } from "sonner";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AnimatePresence, motion } from "framer-motion";
+import html2canvas from 'html2canvas';
 
 export default function HomePage() {
     const [result, setResult] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
     const [error, setError] = useState(null);
+    const cardRef = useRef(null);
+
+    const handleDownload = async () => {
+        if (!cardRef.current) return;
+        setIsDownloading(true);
+        try {
+            // Wait a bit for any images to be fully rendered/loaded if they just appeared
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            const canvas = await html2canvas(cardRef.current, {
+                useCORS: true,
+                scale: 2, // Higher resolution
+                backgroundColor: null,
+                logging: false,
+                allowTaint: true,
+            });
+            
+            const image = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = image;
+            link.download = `midlink-${result.title.slice(0, 20).replace(/\s+/g, '-').toLowerCase()}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            toast.success("Download iniciado!");
+        } catch (err) {
+            console.error("Erro no download:", err);
+            toast.error("Erro ao gerar imagem", { description: "Tente novamente." });
+        } finally {
+            setIsDownloading(false);
+        }
+    };
 
     const handleAnalyze = async (url) => {
         setIsLoading(true);
