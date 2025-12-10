@@ -32,42 +32,40 @@ export default function UrlForm({ onSubmit, isLoading }) {
                 transition={{ duration: 0.5 }}
                 className="space-y-6"
             >
-                <div className="space-y-2">
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900">
-                        mid<span className="text-indigo-600">link</span>
+                <div className="space-y-4">
+                    <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-slate-900">
+                        mid<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">link</span>
                     </h1>
-                    <p className="text-lg text-slate-600 max-w-lg mx-auto">
-                        Transforme qualquer link em um card visual incrível para redes sociais em segundos.
+                    <p className="text-lg md:text-xl text-slate-500 max-w-lg mx-auto font-light leading-relaxed">
+                        Crie cards visuais impressionantes a partir de qualquer link, instantaneamente.
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="relative max-w-lg mx-auto group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                    <div className="relative flex p-2 bg-white rounded-xl shadow-xl ring-1 ring-slate-900/5">
+                <form onSubmit={handleSubmit} className="relative max-w-xl mx-auto group pt-4">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 transition duration-1000 group-hover:duration-200 group-hover:opacity-75"></div>
+                    <div className="relative flex p-2 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200/50 transition-all focus-within:ring-indigo-500/30 focus-within:shadow-xl focus-within:shadow-indigo-100/50">
                         <div className="flex-1">
                             <Input
                                 type="url"
-                                placeholder="Cole seu link aqui (ex: https://noticia.com/artigo)"
+                                placeholder="Cole seu link aqui..."
                                 value={url}
                                 onChange={(e) => {
                                     setUrl(e.target.value);
                                     if(error) setError("");
                                 }}
-                                className="w-full border-none shadow-none focus-visible:ring-0 text-base h-12 bg-transparent"
+                                className="w-full border-none shadow-none focus-visible:ring-0 text-lg h-14 bg-transparent placeholder:text-slate-300 font-medium"
                                 disabled={isLoading}
                             />
                         </div>
                         <Button 
                             type="submit" 
                             disabled={isLoading}
-                            className="bg-indigo-600 hover:bg-indigo-700 text-white h-12 px-6 rounded-lg font-medium transition-all shadow-lg shadow-indigo-200"
+                            className="bg-slate-900 hover:bg-black text-white h-14 px-8 rounded-xl font-medium transition-all shadow-none hover:shadow-lg hover:-translate-y-0.5"
                         >
                             {isLoading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
                             ) : (
-                                <span className="flex items-center gap-2">
-                                    Gerar <Sparkles className="w-4 h-4" />
-                                </span>
+                                <Sparkles className="w-5 h-5" />
                             )}
                         </Button>
                     </div>

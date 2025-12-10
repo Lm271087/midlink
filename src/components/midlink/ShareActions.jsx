@@ -42,50 +42,54 @@ export default function ShareActions({ data }) {
     };
 
     return (
-        <div className="flex flex-wrap justify-center gap-3 mt-8">
-            <Button 
-                variant="outline" 
-                size="icon" 
-                onClick={() => handleShare('whatsapp')}
-                className="rounded-full bg-green-50 hover:bg-green-100 hover:text-green-600 border-green-200 text-green-500"
-                title="Compartilhar no WhatsApp"
-            >
-                <MessageCircle className="w-5 h-5" />
-            </Button>
-            <Button 
-                variant="outline" 
-                size="icon" 
-                onClick={() => handleShare('facebook')}
-                className="rounded-full bg-blue-50 hover:bg-blue-100 hover:text-blue-600 border-blue-200 text-blue-500"
-                title="Compartilhar no Facebook"
-            >
-                <Facebook className="w-5 h-5" />
-            </Button>
-            <Button 
-                variant="outline" 
-                size="icon" 
-                onClick={() => handleShare('twitter')}
-                className="rounded-full bg-slate-50 hover:bg-slate-100 hover:text-black border-slate-200 text-slate-700"
-                title="Compartilhar no X (Twitter)"
-            >
-                <Twitter className="w-5 h-5" />
-            </Button>
-            <Button 
-                variant="outline" 
-                size="icon" 
-                onClick={() => handleShare('linkedin')}
-                className="rounded-full bg-sky-50 hover:bg-sky-100 hover:text-sky-700 border-sky-200 text-sky-600"
-                title="Compartilhar no LinkedIn"
-            >
-                <Linkedin className="w-5 h-5" />
-            </Button>
-            <Button 
-                variant="outline" 
-                onClick={copyToClipboard}
-                className="rounded-full gap-2 border-slate-200 text-slate-600"
-            >
-                <Share2 className="w-4 h-4" /> Copiar
-            </Button>
+        <div className="flex flex-col items-center gap-4 mt-8">
+            <span className="text-xs font-medium text-slate-400 uppercase tracking-widest">Compartilhar</span>
+            <div className="flex flex-wrap justify-center gap-4">
+                <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    onClick={() => handleShare('whatsapp')}
+                    className="rounded-full w-12 h-12 bg-white hover:bg-green-50 text-slate-400 hover:text-green-600 border border-slate-100 hover:border-green-200 shadow-sm transition-all hover:scale-110"
+                    title="WhatsApp"
+                >
+                    <MessageCircle className="w-5 h-5" />
+                </Button>
+                <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    onClick={() => handleShare('facebook')}
+                    className="rounded-full w-12 h-12 bg-white hover:bg-blue-50 text-slate-400 hover:text-blue-600 border border-slate-100 hover:border-blue-200 shadow-sm transition-all hover:scale-110"
+                    title="Facebook"
+                >
+                    <Facebook className="w-5 h-5" />
+                </Button>
+                <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    onClick={() => handleShare('twitter')}
+                    className="rounded-full w-12 h-12 bg-white hover:bg-slate-50 text-slate-400 hover:text-black border border-slate-100 hover:border-slate-300 shadow-sm transition-all hover:scale-110"
+                    title="X (Twitter)"
+                >
+                    <Twitter className="w-5 h-5" />
+                </Button>
+                <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    onClick={() => handleShare('linkedin')}
+                    className="rounded-full w-12 h-12 bg-white hover:bg-sky-50 text-slate-400 hover:text-sky-600 border border-slate-100 hover:border-sky-200 shadow-sm transition-all hover:scale-110"
+                    title="LinkedIn"
+                >
+                    <Linkedin className="w-5 h-5" />
+                </Button>
+                <div className="w-px h-8 bg-slate-200 mx-2 self-center hidden sm:block"></div>
+                <Button 
+                    variant="outline" 
+                    onClick={copyToClipboard}
+                    className="rounded-full h-12 px-6 border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm"
+                >
+                    <Share2 className="w-4 h-4 mr-2" /> Copiar Link
+                </Button>
+            </div>
         </div>
     );
 }

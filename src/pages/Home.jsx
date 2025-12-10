@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function HomePage() {
     const [result, setResult] = useState(null);
@@ -45,39 +46,61 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-slate-50">
-            <div className="w-full max-w-4xl space-y-12">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#FAFAFA] text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
+            {/* Subtle Background Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50/50 via-white/50 to-purple-50/50 pointer-events-none"></div>
+
+            <div className="w-full max-w-4xl space-y-8 relative z-10">
                 
-                {/* Input Section */}
-                <div className={result ? "scale-90 opacity-80 transition-all hover:scale-100 hover:opacity-100" : "scale-100 transition-all"}>
+                {/* Input Section - smoothly transitions when result is present */}
+                <motion.div 
+                    layout
+                    className={`transition-all duration-700 ease-spring ${result ? "scale-90 opacity-60 hover:opacity-100 hover:scale-95" : "scale-100"}`}
+                >
                     <UrlForm onSubmit={handleAnalyze} isLoading={isLoading} />
-                </div>
+                </motion.div>
 
                 {/* Error Display */}
-                {error && (
-                    <div className="max-w-lg mx-auto">
-                        <Alert variant="destructive">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertTitle>Erro</AlertTitle>
-                            <AlertDescription>
-                                {error}
-                            </AlertDescription>
-                        </Alert>
-                    </div>
-                )}
+                <AnimatePresence>
+                    {error && (
+                        <motion.div 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="max-w-lg mx-auto"
+                        >
+                            <Alert variant="destructive" className="border-red-100 bg-red-50/50 backdrop-blur-sm">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertTitle>Erro na análise</AlertTitle>
+                                <AlertDescription>
+                                    {error}
+                                </AlertDescription>
+                            </Alert>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Result Section */}
-                {result && (
-                    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                        <div className="flex justify-center">
-                            <ResultCard data={result} />
-                        </div>
-                        <ShareActions data={result} />
-                    </div>
-                )}
+                <AnimatePresence mode="wait">
+                    {result && (
+                        <motion.div 
+                            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            exit={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                            transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+                            className="space-y-8"
+                        >
+                            <div className="flex justify-center">
+                                <ResultCard data={result} />
+                            </div>
+                            <ShareActions data={result} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
             
-            <Toaster position="top-center" />
+            <Toaster position="top-center" theme="light" closeButton />
         </div>
     );
 }
