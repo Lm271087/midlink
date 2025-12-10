@@ -65,7 +65,7 @@ export default function UrlForm({ onSubmit, isLoading }) {
                 <form onSubmit={handleSubmit} className="relative max-w-xl mx-auto group pt-4">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 transition duration-1000 group-hover:duration-200 group-hover:opacity-75"></div>
                     <div className="relative flex p-2 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200/50 transition-all focus-within:ring-indigo-500/30 focus-within:shadow-xl focus-within:shadow-indigo-100/50">
-                        <div className="flex-1">
+                        <div className="flex-1 flex items-center pr-2">
                             <Input
                                 type="url"
                                 placeholder="Cole seu link aqui..."
@@ -77,6 +77,15 @@ export default function UrlForm({ onSubmit, isLoading }) {
                                 className="w-full border-none shadow-none focus-visible:ring-0 text-lg h-14 bg-transparent placeholder:text-slate-300 font-medium"
                                 disabled={isLoading}
                             />
+                            <Button
+                                type="button"
+                                onClick={handlePaste}
+                                variant="ghost"
+                                className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg mr-2 h-10 w-10 p-0"
+                                title={url ? "Substituir link" : "Colar link"}
+                            >
+                                <ClipboardPaste className="w-5 h-5" />
+                            </Button>
                         </div>
                         <Button 
                             type="submit" 
