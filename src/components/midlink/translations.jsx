@@ -69,6 +69,7 @@ export const translations = {
     replace_link: 'Replace link',
     paste_link: 'Paste link',
     change_image: 'Change image',
-    failed_extract: 'Could not extract data from this URL.'
+    failed_extract: 'Could not extract data from this URL.',
+    timeout_error: 'The analysis took too long. Please try again or use a simpler URL.'
   }
 };

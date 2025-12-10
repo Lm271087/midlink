@@ -77,8 +77,15 @@ export default function HomePage() {
             setResult({ ...analysisData, original_url: url });
         } catch (err) {
             console.error(err);
-            setError(err.message || t.analyze_error);
-            toast.error(t.analyze_fail_title, { description: t.analyze_error });
+            let errorMessage = err.message || t.analyze_error;
+            
+            // Handle timeout/gateway errors specifically
+            if (errorMessage.includes('5024') || errorMessage.includes('timeout') || errorMessage.includes('504')) {
+                errorMessage = t.timeout_error || 'The analysis took too long. Please try again.';
+            }
+
+            setError(errorMessage);
+            toast.error(t.analyze_fail_title, { description: errorMessage });
         } finally {
             setIsLoading(false);
         }
