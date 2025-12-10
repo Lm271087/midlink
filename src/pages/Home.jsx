@@ -20,7 +20,7 @@ export default function HomePage() {
     const [language, setLanguage] = useState('pt-BR');
     const cardRef = useRef(null);
 
-    const t = translations[language];
+    const t = translations[language] || translations['pt-BR'];
 
     const handleDownload = async () => {
         if (!cardRef.current) return;
