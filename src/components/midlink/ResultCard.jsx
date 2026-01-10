@@ -35,7 +35,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
             />
 
             {/* Header Image Section */}
-            <div className="relative h-[35%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
+            <div className="relative h-[40%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
                 {/* Image Edit Button */}
                 <button
                 onClick={() => fileInputRef.current?.click()}
