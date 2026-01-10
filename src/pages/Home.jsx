@@ -31,7 +31,7 @@ export default function HomePage() {
 
             const canvas = await html2canvas(cardRef.current, {
                 useCORS: true,
-                scale: 2, // Higher resolution
+                scale: 3, // Higher resolution
                 backgroundColor: null,
                 logging: false,
                 allowTaint: true,
