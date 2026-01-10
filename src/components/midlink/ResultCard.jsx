@@ -75,16 +75,6 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                      >
-                        <div className="flex gap-2 mb-3">
-                            <span className="inline-flex px-3 py-1 bg-teal-500/90 backdrop-blur-sm shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-teal-400/50">
-                                {source_name || "Web"}
-                            </span>
-                            {content_type && (
-                                <span className="inline-flex px-3 py-1 bg-white/20 backdrop-blur-md shadow-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-white/30">
-                                    {content_type}
-                                </span>
-                            )}
-                        </div>
                         <h2 className="text-white font-extrabold text-xl md:text-2xl leading-tight tracking-tight drop-shadow-xl text-shadow-sm">
                             {title || t?.no_title || "Sem título disponível"}
                         </h2>
