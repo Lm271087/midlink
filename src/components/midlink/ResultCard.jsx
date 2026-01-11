@@ -59,7 +59,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             />
 
             {/* Header Image Section */}
-            <div className="relative h-[45%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
+            <div className="relative h-[38%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
                 {/* Image Edit Button */}
                 <button
                 onClick={() => fileInputRef.current?.click()}
@@ -132,13 +132,13 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 px-4 pt-5 pb-3 flex flex-col bg-white overflow-hidden justify-between">
+            <div className="flex-1 px-5 pt-6 pb-4 flex flex-col bg-white overflow-hidden justify-between">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-4"
+                    className="mb-5"
                 >
                     <p className="text-slate-700 text-[14px] leading-[1.35] font-semibold line-clamp-4">
                         {summary}
@@ -146,7 +146,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="space-y-2 flex-1 flex-shrink-0">
+                <div className="space-y-2.5 flex-1 flex-shrink-0">
                     {key_points && key_points.slice(0, 4).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
