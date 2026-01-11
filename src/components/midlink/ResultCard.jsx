@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react';
 import { motion } from "framer-motion";
-import { Quote, PlayCircle, ImagePlus, Pencil } from "lucide-react";
+import { Quote, ImagePlus } from "lucide-react";
 
 const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
     const fileInputRef = useRef(null);
@@ -155,5 +155,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
         </motion.div>
     );
 });
+
+ResultCard.displayName = 'ResultCard';
 
 export default ResultCard;
