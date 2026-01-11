@@ -26,21 +26,34 @@ Deno.serve(async (req) => {
             1. Visit and extract the EXACT page/video title from metadata (og:title, page title, video title).
             2. **ABSOLUTELY FORBIDDEN**: NEVER use phrases like "Análise do vídeo:", "Video Analysis:", "Análisis del video:" or ANY variation in the title field.
             3. The title MUST be the EXACT original title from the page/video, translated to ${languageName} if needed.
-            4. For videos: Extract the actual video title, thumbnail, channel name, and create an engaging summary highlighting key insights, main topics, and value propositions from the video description and content.
 
-            **EXTRACTION REQUIREMENTS:**
-            - **Title**: EXACT original title (translated to ${languageName}). Example: "Como criar apps de graça" NOT "Análise do vídeo: Como criar apps"
-            - **Summary**: For videos - highlight the main value, what viewers will learn, key insights (2-3 sentences). For articles - concise story-style summary.
-            - **Key Points**: Extract 3 SPECIFIC and CONCRETE takeaways/insights (not generic descriptions).
-            - **Author**: Channel name or article author.
-            - **Published Date**: Extract real date or use "Recente".
-            - **Content Type**: "Vídeo", "Notícia", "Artigo", "Tutorial", etc. (in ${languageName}).
-            - **Image**: For videos - YouTube thumbnail (og:image). For articles - main image.
-            - **Source Name**: "YouTube", "Website Name", etc.
+            **FOR VIDEOS (YouTube, etc.):**
+            - **Title**: EXACT video title (translated to ${languageName})
+            - **Channel Name**: Extract the channel/creator name
+            - **Summary**: Brief engaging overview (2-3 sentences) highlighting main value
+            - **Description**: Detailed description of video content, topics covered, key insights (4-5 sentences)
+            - **Key Points**: 3-4 SPECIFIC takeaways or topics covered
+            - **Keywords**: 4-6 relevant tags/keywords
+            - **Published Date**: Extract publication date
+            - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
+            - **Image**: YouTube thumbnail URL
+            - **Source Name**: "YouTube"
+
+            **FOR ARTICLES/NEWS:**
+            - **Title**: EXACT article headline (translated to ${languageName})
+            - **Author**: Article author name
+            - **Summary**: Concise engaging summary (2-3 sentences)
+            - **Description**: Meta description or first paragraph (longer explanation)
+            - **Key Points**: 3-4 SPECIFIC facts or main ideas
+            - **Keywords**: 4-6 main keywords/topics from article
+            - **Published Date**: Publication date
+            - **Content Type**: "Notícia", "Artigo", "Opinião", "Blog" (in ${languageName})
+            - **Image**: Article main image
+            - **Source Name**: Website/publication name
 
             **NEVER leave fields empty** - infer from available metadata if needed.
 
-            Return ONLY a valid JSON object in ${languageName}.
+            Return ONLY a valid JSON object with ALL fields in ${languageName}.
             `,
             add_context_from_internet: true,
             response_json_schema: {
@@ -48,14 +61,17 @@ Deno.serve(async (req) => {
                 properties: {
                     title: { type: "string" },
                     summary: { type: "string" },
+                    description: { type: "string" },
                     key_points: { type: "array", items: { type: "string" } },
+                    keywords: { type: "array", items: { type: "string" } },
                     image_url: { type: "string" },
                     source_name: { type: "string" },
+                    channel_name: { type: "string" },
                     author: { type: "string" },
                     published_date: { type: "string" },
                     content_type: { type: "string" }
                 },
-                required: ["title", "summary", "key_points", "source_name"]
+                required: ["title", "summary", "description", "key_points", "keywords", "source_name"]
             }
         });
 

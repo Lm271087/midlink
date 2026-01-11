@@ -7,7 +7,9 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
 
     if (!data) return null;
 
-    const { title, summary, key_points, image_url, source_name, author, published_date, content_type, target_audience, sentiment, author_intent } = data;
+    const { title, summary, description, key_points, keywords, image_url, source_name, channel_name, author, published_date, content_type } = data;
+    const isVideo = content_type?.toLowerCase().includes('vídeo') || content_type?.toLowerCase().includes('video') || content_type?.toLowerCase().includes('tutorial');
+    const displayAuthor = isVideo ? channel_name : author;
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -69,13 +71,21 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 {/* Video Play Overlay - Removed as requested */}
                 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 pt-24 z-10 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-5 pt-20 z-10 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent">
                      <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
+                        className="space-y-2"
                      >
-                        <h2 className="text-white font-extrabold text-xl md:text-2xl leading-tight tracking-tight drop-shadow-xl text-shadow-sm">
+                        {isVideo && content_type && (
+                            <div className="flex items-center gap-2">
+                                <span className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white rounded-md shadow-lg">
+                                    {content_type}
+                                </span>
+                            </div>
+                        )}
+                        <h2 className="text-white font-extrabold text-[22px] leading-[1.2] tracking-tight drop-shadow-2xl">
                             {title || t?.no_title || "Sem título disponível"}
                         </h2>
                      </motion.div>
@@ -83,19 +93,26 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 p-5 flex flex-col bg-white min-h-[200px]">
+            <div className="flex-1 p-6 flex flex-col bg-white min-h-[200px]">
+                {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                     className="mb-4"
                 >
-                    <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                    <p className="text-slate-700 text-[15px] leading-relaxed font-semibold mb-2">
                         {summary}
                     </p>
+                    {description && description !== summary && (
+                        <p className="text-slate-600 text-sm leading-relaxed">
+                            {description}
+                        </p>
+                    )}
                 </motion.div>
 
-                <div className="flex-1 space-y-4 overflow-y-auto pr-2 custom-scrollbar">
+                {/* Key Points */}
+                <div className="flex-1 space-y-3 overflow-y-auto pr-2 custom-scrollbar mb-4">
                     {key_points && key_points.slice(0, 4).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
@@ -104,30 +121,57 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                             key={idx} 
                             className="flex items-start gap-3 group"
                         >
-                            <div className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 shrink-0 group-hover:bg-teal-500 transition-colors shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
-                            <p className="text-slate-700 text-sm font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
+                            <div className="w-2 h-2 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_12px_rgba(45,212,191,0.4)]" />
+                            <p className="text-slate-700 text-[13px] font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
                                 {point}
                             </p>
                         </motion.div>
                     ))}
                 </div>
 
+                {/* Keywords */}
+                {keywords && keywords.length > 0 && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        className="flex flex-wrap gap-1.5 mb-4"
+                    >
+                        {keywords.slice(0, 5).map((keyword, idx) => (
+                            <span 
+                                key={idx}
+                                className="px-2.5 py-1 text-[10px] font-semibold text-indigo-700 bg-indigo-50 rounded-full border border-indigo-100"
+                            >
+                                {keyword}
+                            </span>
+                        ))}
+                    </motion.div>
+                )}
+
                 {/* Footer */}
-                <div className="mt-auto pt-5 border-t border-slate-50 flex justify-between items-center text-xs shrink-0">
-                    <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-                            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-                            <span className="text-slate-400">{t?.source_label || "Fonte:"} <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
+                <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center text-xs shrink-0">
+                    <div className="flex flex-col gap-1.5">
+                        <div className="flex items-center gap-2 text-slate-500 font-medium">
+                            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-500 animate-pulse shadow-[0_0_8px_rgba(45,212,191,0.6)]"></span>
+                            <span className="text-[11px]">
+                                <span className="text-slate-400">{isVideo ? (t?.channel_label || "Canal:") : (t?.source_label || "Fonte:")}</span>
+                                {" "}
+                                <span className="text-slate-700 font-bold">{source_name || "Web"}</span>
+                            </span>
                         </div>
-                        {(author || published_date) && (
-                            <div className="text-[10px] text-slate-400 pl-3.5">
-                                {author && <span>{t?.by_label || "por"} {author}</span>}
-                                {author && published_date && <span> • </span>}
-                                {published_date && <span>{published_date}</span>}
+                        {(displayAuthor || published_date) && (
+                            <div className="text-[10px] text-slate-500 pl-4 flex items-center gap-1.5">
+                                {displayAuthor && (
+                                    <span className="font-medium">
+                                        {isVideo ? displayAuthor : `${t?.by_label || "por"} ${displayAuthor}`}
+                                    </span>
+                                )}
+                                {displayAuthor && published_date && <span className="text-slate-300">•</span>}
+                                {published_date && <span className="text-slate-400">{published_date}</span>}
                             </div>
                         )}
                     </div>
-                    <div className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 tracking-wide opacity-80">
+                    <div className="font-bold text-[11px] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 tracking-wide">
                         midlink
                     </div>
                 </div>
