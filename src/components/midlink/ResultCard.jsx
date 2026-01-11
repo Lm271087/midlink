@@ -132,31 +132,31 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 p-5 flex flex-col bg-white overflow-hidden">
+            <div className="flex-1 p-5 flex flex-col bg-white overflow-hidden justify-between">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-3"
+                    className="mb-4"
                 >
-                    <p className="text-slate-700 text-[14px] leading-snug font-semibold line-clamp-2">
+                    <p className="text-slate-700 text-[15px] leading-relaxed font-semibold line-clamp-3">
                         {summary}
                     </p>
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="flex-1 space-y-2.5 overflow-hidden">
-                    {key_points && key_points.slice(0, 3).map((point, idx) => (
+                <div className="flex-1 space-y-3.5 mb-4">
+                    {key_points && key_points.slice(0, 4).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.5 + (idx * 0.1) }}
                             key={idx} 
-                            className="flex items-start gap-2.5 group"
+                            className="flex items-start gap-3 group"
                         >
-                            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
-                            <p className="text-slate-700 text-[12.5px] font-medium leading-snug tracking-tight group-hover:text-slate-900 transition-colors">
+                            <div className="w-2 h-2 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
+                            <p className="text-slate-700 text-[13.5px] font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
                                 {point}
                             </p>
                         </motion.div>
