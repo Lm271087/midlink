@@ -140,14 +140,14 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                     transition={{ delay: 0.4 }}
                     className="mb-8"
                 >
-                    <p className="text-slate-700 text-[15px] leading-[1.4] font-semibold line-clamp-4">
+                    <p className="text-slate-700 text-[15px] leading-[1.4] font-semibold line-clamp-3">
                         {summary}
                     </p>
                 </motion.div>
 
                 {/* Key Points */}
                 <div className="space-y-1 flex-1 flex-shrink-0">
-                    {key_points && key_points.slice(0, 4).map((point, idx) => (
+                    {key_points && key_points.slice(0, 3).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}

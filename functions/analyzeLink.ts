@@ -30,9 +30,9 @@ Deno.serve(async (req) => {
             **FOR VIDEOS (YouTube, etc.):**
             - **Title**: EXACT video title (translated to ${languageName})
             - **Channel Name**: Extract the channel/creator name
-            - **Summary**: Detailed engaging overview (4-5 sentences) to fully utilize the available space, highlighting main value and context
-            - **Description**: Detailed description of video content, topics covered, key insights (4-5 sentences)
-            - **Key Points**: 3-4 SPECIFIC takeaways or topics covered
+            - **Summary**: Engaging overview (3-4 sentences) highlighting main value and context
+            - **Description**: Detailed description of video content, topics covered, key insights (3-4 sentences)
+            - **Key Points**: 3 SPECIFIC takeaways or topics covered
             - **Keywords**: 4-6 relevant tags/keywords
             - **Published Date**: Extract publication date
             - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
@@ -42,9 +42,9 @@ Deno.serve(async (req) => {
             **FOR ARTICLES/NEWS:**
             - **Title**: EXACT article headline (translated to ${languageName})
             - **Author**: Article author name
-            - **Summary**: Detailed engaging summary (4-5 sentences) to fully utilize the available space
+            - **Summary**: Engaging summary (3-4 sentences)
             - **Description**: Meta description or first paragraph (longer explanation)
-            - **Key Points**: 3-4 SPECIFIC facts or main ideas
+            - **Key Points**: 3 SPECIFIC facts or main ideas
             - **Keywords**: 4-6 main keywords/topics from article
             - **Published Date**: Publication date
             - **Content Type**: "Notícia", "Artigo", "Opinião", "Blog" (in ${languageName})
