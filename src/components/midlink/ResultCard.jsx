@@ -132,7 +132,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 px-4 pt-3 pb-3 flex flex-col bg-white overflow-hidden justify-between">
+            <div className="flex-1 px-4 pt-6 pb-3 flex flex-col bg-white overflow-hidden justify-between">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
