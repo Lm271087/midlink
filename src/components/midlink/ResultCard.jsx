@@ -59,7 +59,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             />
 
             {/* Header Image Section */}
-            <div className="relative h-[50%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
+            <div className="relative h-[42%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
                 {/* Image Edit Button */}
                 <button
                 onClick={() => fileInputRef.current?.click()}
@@ -138,7 +138,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-5"
+                    className="mb-4"
                 >
                     <p className="text-slate-700 text-[15px] leading-[1.4] font-semibold line-clamp-4">
                         {summary}
