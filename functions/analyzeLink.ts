@@ -22,37 +22,25 @@ Deno.serve(async (req) => {
             prompt: `
             Analyze the following URL: ${url}
 
-            Task:
-            1. Visit the page/video URL and analyze it. 
-            2. **FORCE EXTRACTION**: If the content is a video (YouTube, etc.) or protected, YOU MUST USE THE PAGE METADATA (Title, Description, og:image, Keywords) to generate the content. DO NOT FAIL.
-            3. EXTRACT AND TRANSLATE ALL CONTENT TO: ${languageName}.
+            **CRITICAL RULES:**
+            1. Visit and extract the EXACT page/video title from metadata (og:title, page title, video title).
+            2. **ABSOLUTELY FORBIDDEN**: NEVER use phrases like "Análise do vídeo:", "Video Analysis:", "Análisis del video:" or ANY variation in the title field.
+            3. The title MUST be the EXACT original title from the page/video, translated to ${languageName} if needed.
+            4. For videos: Extract the actual video title, thumbnail, channel name, and create an engaging summary highlighting key insights, main topics, and value propositions from the video description and content.
 
-            4. **CRITICAL INSTRUCTION**: 
-               - **NEVER return null or empty strings**. If you can't find specific details, **INFER them from the URL or page title**, or generate a generic description based on the available metadata.
-               - **IMAGE**: For YouTube/Videos, ALWAYS find the **thumbnail URL** (og:image). If missing, use a relevant stock image URL.
-               - **TITLE FOR VIDEOS**: Extract the REAL video title from the page metadata (og:title, page title). DO NOT generate generic titles like "Análise do vídeo: [id]". Use the actual video/page title.
+            **EXTRACTION REQUIREMENTS:**
+            - **Title**: EXACT original title (translated to ${languageName}). Example: "Como criar apps de graça" NOT "Análise do vídeo: Como criar apps"
+            - **Summary**: For videos - highlight the main value, what viewers will learn, key insights (2-3 sentences). For articles - concise story-style summary.
+            - **Key Points**: Extract 3 SPECIFIC and CONCRETE takeaways/insights (not generic descriptions).
+            - **Author**: Channel name or article author.
+            - **Published Date**: Extract real date or use "Recente".
+            - **Content Type**: "Vídeo", "Notícia", "Artigo", "Tutorial", etc. (in ${languageName}).
+            - **Image**: For videos - YouTube thumbnail (og:image). For articles - main image.
+            - **Source Name**: "YouTube", "Website Name", etc.
 
-            5. REQUIRED FIELDS (Translate to ${languageName}):
-               - Title: FOR VIDEOS - Extract the REAL video title from page metadata. FOR ARTICLES - Main headline. NEVER use format "Análise do vídeo:" or similar generic text.
-               - Summary: A concise, engaging 'story-style' summary (2-3 sentences max).
-               - Key Points: Exactly 3 short, punchy facts/takeaways.
-               - Author: Channel/Creator/Author name.
-               - Published Date: Date or "Recent".
-               - Content Type: "Vídeo", "Notícia", "Artigo", etc. (in ${languageName}).
-               - Image: The extracted image URL.
-               - Source Name: The website name (e.g., "YouTube").
+            **NEVER leave fields empty** - infer from available metadata if needed.
 
-            6. If it is a WEB PAGE:
-               - Title: Main headline (Translate to ${languageName}).
-               - Summary: Create a concise, engaging 'story-style' summary (2-3 sentences max) in ${languageName}. Focus on the main story.
-               - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
-               - Author: Article author or "Editorial Team".
-               - Published Date: Date of publication.
-               - Content Type: Classify as "Notícia", "Artigo Técnico", "Opinião", "Blog", etc. - in ${languageName}.
-               - Image: Main visual.
-               - Source Name: Website Brand Name.
-
-            Return ONLY a valid JSON object.
+            Return ONLY a valid JSON object in ${languageName}.
             `,
             add_context_from_internet: true,
             response_json_schema: {
