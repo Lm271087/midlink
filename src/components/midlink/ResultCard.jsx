@@ -156,7 +156,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                             className="flex items-start gap-2.5 group"
                         >
                             <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
-                            <p className="text-slate-700 text-[13px] font-medium leading-[1.4] tracking-tight group-hover:text-slate-900 transition-colors line-clamp-2">
+                            <p className="text-slate-700 text-[15px] font-medium leading-[1.4] tracking-tight group-hover:text-slate-900 transition-colors line-clamp-2">
                                 {point}
                             </p>
                         </motion.div>

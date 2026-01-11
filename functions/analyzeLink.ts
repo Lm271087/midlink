@@ -30,7 +30,7 @@ Deno.serve(async (req) => {
             **FOR VIDEOS (YouTube, etc.):**
             - **Title**: EXACT video title (translated to ${languageName})
             - **Channel Name**: Extract the channel/creator name
-            - **Summary**: Brief engaging overview (2-3 sentences) highlighting main value
+            - **Summary**: Detailed engaging overview (4-5 sentences) to fully utilize the available space, highlighting main value and context
             - **Description**: Detailed description of video content, topics covered, key insights (4-5 sentences)
             - **Key Points**: 3-4 SPECIFIC takeaways or topics covered
             - **Keywords**: 4-6 relevant tags/keywords
@@ -42,7 +42,7 @@ Deno.serve(async (req) => {
             **FOR ARTICLES/NEWS:**
             - **Title**: EXACT article headline (translated to ${languageName})
             - **Author**: Article author name
-            - **Summary**: Concise engaging summary (2-3 sentences)
+            - **Summary**: Detailed engaging summary (4-5 sentences) to fully utilize the available space
             - **Description**: Meta description or first paragraph (longer explanation)
             - **Key Points**: 3-4 SPECIFIC facts or main ideas
             - **Keywords**: 4-6 main keywords/topics from article
