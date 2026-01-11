@@ -112,8 +112,8 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="flex-1 space-y-3 overflow-y-auto pr-2 custom-scrollbar mb-4">
-                    {key_points && key_points.slice(0, 4).map((point, idx) => (
+                <div className="flex-1 space-y-3 mb-4">
+                    {key_points && key_points.slice(0, 3).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -128,25 +128,6 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                         </motion.div>
                     ))}
                 </div>
-
-                {/* Keywords */}
-                {keywords && keywords.length > 0 && (
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.8 }}
-                        className="flex flex-wrap gap-1.5 mb-4"
-                    >
-                        {keywords.slice(0, 5).map((keyword, idx) => (
-                            <span 
-                                key={idx}
-                                className="px-2.5 py-1 text-[10px] font-semibold text-indigo-700 bg-indigo-50 rounded-full border border-indigo-100"
-                            >
-                                {keyword}
-                            </span>
-                        ))}
-                    </motion.div>
-                )}
 
                 {/* Footer */}
                 <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center text-xs shrink-0">
