@@ -59,7 +59,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             />
 
             {/* Header Image Section */}
-            <div className="relative h-[40%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
+            <div className="relative h-[50%] w-full bg-slate-900 overflow-hidden shrink-0 group/image">
                 {/* Image Edit Button */}
                 <button
                 onClick={() => fileInputRef.current?.click()}
@@ -93,7 +93,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                 {/* Video Play Overlay - Removed as requested */}
                 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 pt-20 z-10 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent group/title">
+                <div className="absolute bottom-0 left-0 right-0 p-4 pt-16 z-10 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent group/title">
                      <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -121,7 +121,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                             ) : (
                                 <h2 
                                     onClick={handleTitleEdit}
-                                    className="text-white font-extrabold text-[22px] leading-[1.2] tracking-tight drop-shadow-2xl cursor-pointer hover:text-white/90 transition-colors"
+                                    className="text-white font-extrabold text-[20px] leading-[1.15] tracking-tight drop-shadow-2xl cursor-pointer hover:text-white/90 transition-colors"
                                 >
                                     {title || t?.no_title || "Sem título disponível"}
                                 </h2>
@@ -132,7 +132,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 p-6 flex flex-col bg-white overflow-hidden">
+            <div className="flex-1 p-5 flex flex-col bg-white overflow-hidden">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
@@ -140,23 +140,23 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                     transition={{ delay: 0.4 }}
                     className="mb-3"
                 >
-                    <p className="text-slate-700 text-[15px] leading-relaxed font-semibold line-clamp-2">
+                    <p className="text-slate-700 text-[14px] leading-snug font-semibold line-clamp-2">
                         {summary}
                     </p>
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="flex-1 space-y-3 overflow-hidden">
+                <div className="flex-1 space-y-2.5 overflow-hidden">
                     {key_points && key_points.slice(0, 3).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.5 + (idx * 0.1) }}
                             key={idx} 
-                            className="flex items-start gap-3 group"
+                            className="flex items-start gap-2.5 group"
                         >
-                            <div className="w-2 h-2 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_12px_rgba(45,212,191,0.4)]" />
-                            <p className="text-slate-700 text-[13px] font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
+                            <p className="text-slate-700 text-[12.5px] font-medium leading-snug tracking-tight group-hover:text-slate-900 transition-colors">
                                 {point}
                             </p>
                         </motion.div>
@@ -164,18 +164,18 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                 </div>
 
                 {/* Footer */}
-                <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center text-xs shrink-0">
-                    <div className="flex flex-col gap-1.5">
-                        <div className="flex items-center gap-2 text-slate-500 font-medium">
-                            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-500 animate-pulse shadow-[0_0_8px_rgba(45,212,191,0.6)]"></span>
-                            <span className="text-[11px]">
+                <div className="mt-auto pt-3.5 border-t border-slate-100 flex justify-between items-center text-xs shrink-0">
+                    <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1.5 text-slate-500 font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-teal-400 to-cyan-500 animate-pulse shadow-[0_0_6px_rgba(45,212,191,0.6)]"></span>
+                            <span className="text-[10.5px]">
                                 <span className="text-slate-400">{isVideo ? (t?.channel_label || "Canal:") : (t?.source_label || "Fonte:")}</span>
                                 {" "}
                                 <span className="text-slate-700 font-bold">{source_name || "Web"}</span>
                             </span>
                         </div>
                         {(displayAuthor || published_date) && (
-                            <div className="text-[10px] text-slate-500 pl-4 flex items-center gap-1.5">
+                            <div className="text-[9.5px] text-slate-500 pl-3 flex items-center gap-1.5">
                                 {displayAuthor && (
                                     <span className="font-medium">
                                         {isVideo ? displayAuthor : `${t?.by_label || "por"} ${displayAuthor}`}
@@ -186,7 +186,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                             </div>
                         )}
                     </div>
-                    <div className="font-bold text-[11px] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 tracking-wide">
+                    <div className="font-bold text-[10.5px] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 tracking-wide">
                         midlink
                     </div>
                 </div>
