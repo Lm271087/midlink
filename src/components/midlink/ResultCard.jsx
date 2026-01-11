@@ -128,7 +128,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                         )}
                     </div>
                     <div className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 tracking-wide opacity-80">
-                        midlink.app
+                        midlink
                     </div>
                 </div>
             </div>
