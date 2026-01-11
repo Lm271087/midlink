@@ -147,7 +147,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
 
                 {/* Key Points */}
                 <div className="space-y-3 flex-1 flex-shrink-0">
-                    {key_points && key_points.slice(0, 3).map((point, idx) => (
+                    {key_points && key_points.slice(0, 4).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
