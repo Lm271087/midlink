@@ -116,12 +116,12 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                                     onBlur={handleTitleSave}
                                     onKeyDown={handleTitleKeyDown}
                                     autoFocus
-                                    className="w-full bg-white/10 backdrop-blur-sm text-white font-extrabold text-[22px] leading-[1.2] tracking-tight px-2 py-1 rounded border-2 border-white/30 focus:outline-none focus:border-white/60"
+                                    className="w-full bg-white/10 backdrop-blur-sm text-white font-black text-[26px] leading-[1.1] tracking-tight px-2 py-1 rounded border-2 border-white/30 focus:outline-none focus:border-white/60"
                                 />
                             ) : (
                                 <h2 
                                     onClick={handleTitleEdit}
-                                    className="text-white font-extrabold text-[20px] leading-[1.15] tracking-tight drop-shadow-2xl cursor-pointer hover:text-white/90 transition-colors"
+                                    className="text-white font-black text-[26px] leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] cursor-pointer hover:text-white/95 transition-all hover:scale-[1.02]"
                                 >
                                     {title || t?.no_title || "Sem título disponível"}
                                 </h2>
