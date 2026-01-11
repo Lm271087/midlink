@@ -147,6 +147,7 @@ export default function HomePage() {
                                     data={result} 
                                     t={t}
                                     onImageUpdate={(newImage) => setResult(prev => ({ ...prev, image_url: newImage }))}
+                                    onTitleUpdate={(newTitle) => setResult(prev => ({ ...prev, title: newTitle }))}
                                 />
                             </div>
                             <ShareActions 

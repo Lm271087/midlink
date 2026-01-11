@@ -2,8 +2,10 @@ import React, { forwardRef, useRef } from 'react';
 import { motion } from "framer-motion";
 import { Quote, ImagePlus } from "lucide-react";
 
-const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
+const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) => {
     const fileInputRef = useRef(null);
+    const [isEditingTitle, setIsEditingTitle] = React.useState(false);
+    const [editedTitle, setEditedTitle] = React.useState('');
 
     if (!data) return null;
 
@@ -19,6 +21,26 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 onImageUpdate(reader.result);
             };
             reader.readAsDataURL(file);
+        }
+    };
+
+    const handleTitleEdit = () => {
+        setEditedTitle(title);
+        setIsEditingTitle(true);
+    };
+
+    const handleTitleSave = () => {
+        if (editedTitle.trim() && onTitleUpdate) {
+            onTitleUpdate(editedTitle.trim());
+        }
+        setIsEditingTitle(false);
+    };
+
+    const handleTitleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleTitleSave();
+        } else if (e.key === 'Escape') {
+            setIsEditingTitle(false);
         }
     };
 
@@ -71,7 +93,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                 {/* Video Play Overlay - Removed as requested */}
                 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 pt-20 z-10 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-5 pt-20 z-10 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent group/title">
                      <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -85,9 +107,26 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
                                 </span>
                             </div>
                         )}
-                        <h2 className="text-white font-extrabold text-[22px] leading-[1.2] tracking-tight drop-shadow-2xl">
-                            {title || t?.no_title || "Sem título disponível"}
-                        </h2>
+                        <div className="relative">
+                            {isEditingTitle ? (
+                                <input
+                                    type="text"
+                                    value={editedTitle}
+                                    onChange={(e) => setEditedTitle(e.target.value)}
+                                    onBlur={handleTitleSave}
+                                    onKeyDown={handleTitleKeyDown}
+                                    autoFocus
+                                    className="w-full bg-white/10 backdrop-blur-sm text-white font-extrabold text-[22px] leading-[1.2] tracking-tight px-2 py-1 rounded border-2 border-white/30 focus:outline-none focus:border-white/60"
+                                />
+                            ) : (
+                                <h2 
+                                    onClick={handleTitleEdit}
+                                    className="text-white font-extrabold text-[22px] leading-[1.2] tracking-tight drop-shadow-2xl cursor-pointer hover:text-white/90 transition-colors"
+                                >
+                                    {title || t?.no_title || "Sem título disponível"}
+                                </h2>
+                            )}
+                        </div>
                      </motion.div>
                 </div>
             </div>

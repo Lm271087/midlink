@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
             - **Keywords**: 4-6 relevant tags/keywords
             - **Published Date**: Extract publication date
             - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
-            - **Image**: YouTube thumbnail URL
+            - **Image**: Extract the HIGHEST QUALITY thumbnail from og:image, twitter:image, or YouTube maxresdefault thumbnail (prefer maxresdefault.jpg over other qualities)
             - **Source Name**: "YouTube"
 
             **FOR ARTICLES/NEWS:**
@@ -48,7 +48,7 @@ Deno.serve(async (req) => {
             - **Keywords**: 4-6 main keywords/topics from article
             - **Published Date**: Publication date
             - **Content Type**: "Notícia", "Artigo", "Opinião", "Blog" (in ${languageName})
-            - **Image**: Article main image
+            - **Image**: Extract the MAIN/FEATURED image from og:image, twitter:image:src, or article:image metadata (prefer high resolution)
             - **Source Name**: Website/publication name
 
             **NEVER leave fields empty** - infer from available metadata if needed.
