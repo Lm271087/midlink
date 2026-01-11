@@ -84,53 +84,69 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
 
             {/* Content Body */}
             <div className="flex-1 p-5 flex flex-col bg-white min-h-[200px]">
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="mb-4"
-                >
-                    <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                        {summary}
-                    </p>
-                </motion.div>
-
-                <div className="flex-1 space-y-4 overflow-y-auto pr-2 custom-scrollbar">
-                    {key_points && key_points.slice(0, 4).map((point, idx) => (
+                {content_type?.toLowerCase().includes('video') || content_type?.toLowerCase().includes('vídeo') ? (
+                    // For videos: show only title
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="flex-1 flex flex-col items-center justify-center text-center"
+                    >
+                        <h3 className="text-slate-800 text-lg font-bold leading-relaxed">
+                            {title || t?.no_title || "Sem título disponível"}
+                        </h3>
+                    </motion.div>
+                ) : (
+                    <>
                         <motion.div 
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5 + (idx * 0.1) }}
-                            key={idx} 
-                            className="flex items-start gap-3 group"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.4 }}
+                            className="mb-4"
                         >
-                            <div className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 shrink-0 group-hover:bg-teal-500 transition-colors shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
-                            <p className="text-slate-700 text-sm font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
-                                {point}
+                            <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                                {summary}
                             </p>
                         </motion.div>
-                    ))}
-                </div>
 
-                {/* Footer */}
-                <div className="mt-auto pt-5 border-t border-slate-50 flex justify-between items-center text-xs shrink-0">
-                    <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-                            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-                            <span className="text-slate-400">{t?.source_label || "Fonte:"} <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
+                        <div className="flex-1 space-y-4 overflow-y-auto pr-2 custom-scrollbar">
+                            {key_points && key_points.slice(0, 4).map((point, idx) => (
+                                <motion.div 
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.5 + (idx * 0.1) }}
+                                    key={idx} 
+                                    className="flex items-start gap-3 group"
+                                >
+                                    <div className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 shrink-0 group-hover:bg-teal-500 transition-colors shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
+                                    <p className="text-slate-700 text-sm font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
+                                        {point}
+                                    </p>
+                                </motion.div>
+                            ))}
                         </div>
-                        {(author || published_date) && (
-                            <div className="text-[10px] text-slate-400 pl-3.5">
-                                {author && <span>{t?.by_label || "por"} {author}</span>}
-                                {author && published_date && <span> • </span>}
-                                {published_date && <span>{published_date}</span>}
+
+                        {/* Footer */}
+                        <div className="mt-auto pt-5 border-t border-slate-50 flex justify-between items-center text-xs shrink-0">
+                            <div className="flex flex-col gap-1">
+                                <div className="flex items-center gap-1.5 text-slate-400 font-medium">
+                                    <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                                    <span className="text-slate-400">{t?.source_label || "Fonte:"} <span className="text-slate-600 font-semibold">{source_name || "Web"}</span></span>
+                                </div>
+                                {(author || published_date) && (
+                                    <div className="text-[10px] text-slate-400 pl-3.5">
+                                        {author && <span>{t?.by_label || "por"} {author}</span>}
+                                        {author && published_date && <span> • </span>}
+                                        {published_date && <span>{published_date}</span>}
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                    <div className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 tracking-wide opacity-80">
-                        midlink
-                    </div>
-                </div>
+                            <div className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 tracking-wide opacity-80">
+                                midlink
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </motion.div>
     );
