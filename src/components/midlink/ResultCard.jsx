@@ -132,31 +132,31 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 p-5 flex flex-col bg-white overflow-hidden justify-between">
+            <div className="flex-1 p-4 flex flex-col bg-white overflow-hidden">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-4"
+                    className="mb-3"
                 >
-                    <p className="text-slate-700 text-[15px] leading-relaxed font-semibold line-clamp-3">
+                    <p className="text-slate-700 text-[14px] leading-snug font-semibold line-clamp-2">
                         {summary}
                     </p>
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="flex-1 space-y-3.5 mb-4">
+                <div className="space-y-2.5 mb-3 flex-shrink-0">
                     {key_points && key_points.slice(0, 4).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.5 + (idx * 0.1) }}
                             key={idx} 
-                            className="flex items-start gap-3 group"
+                            className="flex items-start gap-2.5 group"
                         >
-                            <div className="w-2 h-2 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
-                            <p className="text-slate-700 text-[13.5px] font-medium leading-relaxed tracking-tight group-hover:text-slate-900 transition-colors">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
+                            <p className="text-slate-700 text-[13px] font-medium leading-snug tracking-tight group-hover:text-slate-900 transition-colors line-clamp-2">
                                 {point}
                             </p>
                         </motion.div>
@@ -164,18 +164,18 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                 </div>
 
                 {/* Footer */}
-                <div className="mt-auto pt-3.5 border-t border-slate-100 flex justify-between items-center text-xs shrink-0">
-                    <div className="flex flex-col gap-1">
+                <div className="mt-auto pt-2.5 border-t border-slate-100 flex justify-between items-center text-xs shrink-0">
+                    <div className="flex flex-col gap-0.5">
                         <div className="flex items-center gap-1.5 text-slate-500 font-medium">
                             <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-teal-400 to-cyan-500 animate-pulse shadow-[0_0_6px_rgba(45,212,191,0.6)]"></span>
-                            <span className="text-[10.5px]">
+                            <span className="text-[10px]">
                                 <span className="text-slate-400">{isVideo ? (t?.channel_label || "Canal:") : (t?.source_label || "Fonte:")}</span>
                                 {" "}
                                 <span className="text-slate-700 font-bold">{source_name || "Web"}</span>
                             </span>
                         </div>
                         {(displayAuthor || published_date) && (
-                            <div className="text-[9.5px] text-slate-500 pl-3 flex items-center gap-1.5">
+                            <div className="text-[9px] text-slate-500 pl-3 flex items-center gap-1.5">
                                 {displayAuthor && (
                                     <span className="font-medium">
                                         {isVideo ? displayAuthor : `${t?.by_label || "por"} ${displayAuthor}`}
@@ -186,7 +186,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                             </div>
                         )}
                     </div>
-                    <div className="font-bold text-[10.5px] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 tracking-wide">
+                    <div className="font-bold text-[10px] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 tracking-wide">
                         midlink
                     </div>
                 </div>
