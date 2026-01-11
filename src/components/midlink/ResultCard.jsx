@@ -47,7 +47,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
     return (
         <motion.div
             ref={ref}
-            className="w-full max-w-[400px] mx-auto aspect-[9/16] bg-white rounded-[32px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col ring-1 ring-black/5 relative group/card"
+            className="w-full max-w-[400px] mx-auto aspect-[9/16] bg-white rounded-none shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col ring-1 ring-black/5 relative group/card"
         >
             {/* Hidden File Input */}
             <input 
