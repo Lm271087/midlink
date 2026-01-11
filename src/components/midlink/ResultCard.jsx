@@ -132,7 +132,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 px-4 pt-4 pb-3 flex flex-col bg-white overflow-hidden justify-between">
+            <div className="flex-1 px-4 pt-3 pb-2 flex flex-col bg-white overflow-hidden justify-between">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
@@ -146,7 +146,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="space-y-2 flex-1 flex-shrink-0">
+                <div className="space-y-1 flex-1 flex-shrink-0">
                     {key_points && key_points.slice(0, 4).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
