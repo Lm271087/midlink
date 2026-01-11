@@ -138,7 +138,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-2"
+                    className="mb-5"
                 >
                     <p className="text-slate-700 text-[15px] leading-[1.4] font-semibold line-clamp-4">
                         {summary}
