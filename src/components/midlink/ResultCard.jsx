@@ -93,26 +93,21 @@ const ResultCard = forwardRef(({ data, onImageUpdate, t }, ref) => {
             </div>
 
             {/* Content Body */}
-            <div className="flex-1 p-6 flex flex-col bg-white min-h-[200px]">
+            <div className="flex-1 p-6 flex flex-col bg-white overflow-hidden">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-4"
+                    className="mb-3"
                 >
-                    <p className="text-slate-700 text-[15px] leading-relaxed font-semibold mb-2">
+                    <p className="text-slate-700 text-[15px] leading-relaxed font-semibold line-clamp-2">
                         {summary}
                     </p>
-                    {description && description !== summary && (
-                        <p className="text-slate-600 text-sm leading-relaxed">
-                            {description}
-                        </p>
-                    )}
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="flex-1 space-y-3 mb-4">
+                <div className="flex-1 space-y-3 overflow-hidden">
                     {key_points && key_points.slice(0, 3).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
