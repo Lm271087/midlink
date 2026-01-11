@@ -30,14 +30,15 @@ Deno.serve(async (req) => {
             4. **CRITICAL INSTRUCTION**: 
                - **NEVER return null or empty strings**. If you can't find specific details, **INFER them from the URL or page title**, or generate a generic description based on the available metadata.
                - **IMAGE**: For YouTube/Videos, ALWAYS find the **thumbnail URL** (og:image). If missing, use a relevant stock image URL.
+               - **TITLE FOR VIDEOS**: Extract the REAL video title from the page metadata (og:title, page title). DO NOT generate generic titles like "Análise do vídeo: [id]". Use the actual video/page title.
 
             5. REQUIRED FIELDS (Translate to ${languageName}):
-               - Title: Main title/headline.
+               - Title: FOR VIDEOS - Extract the REAL video title from page metadata. FOR ARTICLES - Main headline. NEVER use format "Análise do vídeo:" or similar generic text.
                - Summary: A concise, engaging 'story-style' summary (2-3 sentences max).
                - Key Points: Exactly 3 short, punchy facts/takeaways.
                - Author: Channel/Creator/Author name.
                - Published Date: Date or "Recent".
-               - Content Type: "Video", "News", "Article", etc.
+               - Content Type: "Vídeo", "Notícia", "Artigo", etc. (in ${languageName}).
                - Image: The extracted image URL.
                - Source Name: The website name (e.g., "YouTube").
 
@@ -47,7 +48,7 @@ Deno.serve(async (req) => {
                - Key Points: Extract exactly 3 of the MOST IMPORTANT facts (in ${languageName}). Keep them short and punchy.
                - Author: Article author or "Editorial Team".
                - Published Date: Date of publication.
-               - Content Type: Classify as "News", "Technical Article", "Opinion", "Blog Post", "Paper", etc. - Translate label to ${languageName}.
+               - Content Type: Classify as "Notícia", "Artigo Técnico", "Opinião", "Blog", etc. - in ${languageName}.
                - Image: Main visual.
                - Source Name: Website Brand Name.
 
