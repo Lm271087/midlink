@@ -22,11 +22,11 @@ export default function ShareActions({ data, onDownload, isDownloading, t }) {
                         variant="default"
                         onClick={onDownload}
                         disabled={isDownloading}
-                        className="rounded-full h-12 px-6 bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg transition-all"
+                        className="rounded-full h-10 px-6 bg-slate-900 hover:bg-black text-white shadow-sm hover:shadow-md transition-all text-sm font-medium"
                     >
                          {isDownloading ? (
                             <span className="flex items-center gap-2">
-                                <span className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                                <span className="h-3.5 w-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                                 {t.downloading}
                             </span>
                         ) : (
@@ -39,7 +39,7 @@ export default function ShareActions({ data, onDownload, isDownloading, t }) {
                     <Button 
                         variant="outline" 
                         onClick={copyToClipboard}
-                        className="rounded-full h-12 w-12 p-0 border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm"
+                        className="rounded-full h-10 w-10 p-0 border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300 transition-all"
                         title={t.copy_btn}
                     >
                         <Share2 className="w-4 h-4" />
