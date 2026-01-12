@@ -121,7 +121,7 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                             ) : (
                                 <h2 
                                 onClick={handleTitleEdit}
-                                className="text-white font-black text-[28px] leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] cursor-pointer hover:text-white/95 transition-all hover:scale-[1.02]"
+                                className="text-white font-black text-2xl sm:text-[28px] leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] cursor-pointer hover:text-white/95 transition-all hover:scale-[1.02]"
                                 >
                                 {title || t?.no_title || "Sem título disponível"}
                                 </h2>
@@ -132,31 +132,31 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body - ~40% Content + 10% Footer */}
-            <div className="h-[50%] px-5 pt-6 pb-4 flex flex-col bg-white overflow-hidden">
+            <div className="h-[50%] px-4 sm:px-5 pt-4 sm:pt-6 pb-3 sm:pb-4 flex flex-col bg-white overflow-hidden">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-5 shrink-0"
+                    className="mb-3 sm:mb-5 shrink-0"
                 >
-                    <p className="text-slate-700 text-[15px] leading-[1.5] font-semibold line-clamp-4">
+                    <p className="text-slate-700 text-sm sm:text-[15px] leading-[1.4] sm:leading-[1.5] font-semibold line-clamp-4">
                         {summary}
                     </p>
                 </motion.div>
 
                 {/* Key Points */}
-                <div className="space-y-2 flex-1 min-h-0">
+                <div className="space-y-1.5 sm:space-y-2 flex-1 min-h-0">
                     {key_points && key_points.slice(0, 3).map((point, idx) => (
                         <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.5 + (idx * 0.1) }}
                             key={idx} 
-                            className="flex items-start gap-2.5 group"
+                            className="flex items-start gap-2 sm:gap-2.5 group"
                         >
                             <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
-                            <p className="text-slate-700 text-[15px] font-medium leading-[1.35] tracking-tight group-hover:text-slate-900 transition-colors line-clamp-2">
+                            <p className="text-slate-700 text-sm sm:text-[15px] font-medium leading-[1.3] sm:leading-[1.35] tracking-tight group-hover:text-slate-900 transition-colors line-clamp-2">
                                 {point}
                             </p>
                         </motion.div>

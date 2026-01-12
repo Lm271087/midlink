@@ -92,7 +92,7 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6 bg-[#FAFAFA] text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
+        <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 md:p-6 bg-[#FAFAFA] text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
             {/* Subtle Background Pattern */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50/50 via-white/50 to-purple-50/50 pointer-events-none"></div>
@@ -101,7 +101,7 @@ export default function HomePage() {
                 <LanguageSelector currentLang={language} onLanguageChange={setLanguage} />
             </div>
 
-            <div className="w-full max-w-4xl space-y-8 relative z-10 pt-10 md:pt-0">
+            <div className="w-full max-w-4xl space-y-6 md:space-y-8 relative z-10 pt-8 md:pt-0">
                 
                 {/* Input Section - smoothly transitions when result is present */}
                 <motion.div 
