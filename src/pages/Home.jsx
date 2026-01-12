@@ -48,7 +48,7 @@ export default function HomePage() {
                         });
 
                         // Reduce vertical spacing (margin-bottom) for the summary paragraph
-                        const summaryP = card.querySelector('p.line-clamp-8');
+                        const summaryP = card.querySelector('p.line-clamp-10');
                         if (summaryP) {
                             // Force tighter line height for summary in the image capture if needed
                              // slightly looser than key points version but tighter than display to ensure fit

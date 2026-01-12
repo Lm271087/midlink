@@ -30,7 +30,7 @@ Deno.serve(async (req) => {
             **FOR VIDEOS (YouTube, etc.):**
             - **Title**: EXACT video title (translated to ${languageName})
             - **Channel Name**: Extract the channel/creator name
-            - **Summary**: Engaging and detailed overview (6-8 sentences) highlighting main value, context, and key details to fill a paragraph.
+            - **Summary**: Comprehensive and deep overview (8-12 sentences) highlighting main value, context, nuances and key details to fill a large paragraph.
             - **Key Points**: 3 SPECIFIC takeaways or topics covered
             - **Published Date**: Extract publication date
             - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
