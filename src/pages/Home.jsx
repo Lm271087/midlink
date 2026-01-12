@@ -48,17 +48,11 @@ export default function HomePage() {
                         });
 
                         // Reduce vertical spacing (margin-bottom) for the summary paragraph
-                        const summaryP = card.querySelector('p.line-clamp-4');
+                        const summaryP = card.querySelector('p.line-clamp-8');
                         if (summaryP) {
-                            summaryP.parentElement.style.marginBottom = '8px'; // was mb-5 (20px) or mb-3 (12px)
-                            // Force tighter line height for summary
-                            summaryP.style.lineHeight = '1.35';
-                        }
-                        
-                        // Reduce gap between key points
-                        const keyPointsContainer = card.querySelector('.space-y-1\\.5');
-                        if (keyPointsContainer) {
-                            keyPointsContainer.style.rowGap = '2px'; // tighter gap
+                            // Force tighter line height for summary in the image capture if needed
+                             // slightly looser than key points version but tighter than display to ensure fit
+                            summaryP.style.lineHeight = '1.5';
                         }
                     }
                 }

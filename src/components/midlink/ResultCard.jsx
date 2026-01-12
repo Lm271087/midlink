@@ -138,30 +138,12 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mb-3 sm:mb-5 shrink-0"
+                    className="flex-1 shrink-0 px-[15px] flex items-center"
                 >
-                    <p className="text-slate-700 text-sm sm:text-[15px] leading-[1.4] sm:leading-[1.5] font-semibold line-clamp-4">
+                    <p className="text-slate-700 text-sm sm:text-[15px] leading-[1.6] sm:leading-[1.7] font-semibold line-clamp-8 text-center">
                         {summary}
                     </p>
                 </motion.div>
-
-                {/* Key Points */}
-                <div className="space-y-1.5 sm:space-y-2 flex-1 min-h-0">
-                    {key_points && key_points.slice(0, 3).map((point, idx) => (
-                        <motion.div 
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5 + (idx * 0.1) }}
-                            key={idx} 
-                            className="flex items-start gap-2 sm:gap-2.5 group"
-                        >
-                            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mt-1.5 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(45,212,191,0.4)]" />
-                            <p className="text-slate-700 text-sm sm:text-[15px] font-medium leading-[1.3] sm:leading-[1.35] tracking-tight group-hover:text-slate-900 transition-colors line-clamp-2">
-                                {point}
-                            </p>
-                        </motion.div>
-                    ))}
-                </div>
 
                 {/* Footer - ~10% Height target */}
                 <div className="mt-auto pt-3 border-t border-slate-100 flex justify-between items-center text-xs shrink-0 h-[10%] min-h-[40px]">
