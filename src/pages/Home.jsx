@@ -52,11 +52,17 @@ export default function HomePage() {
                         const summaryP = card.querySelector('p[class*="line-clamp"]');
                         if (summaryP) {
                             // Force tighter line height for summary in the image capture if needed
-                             // slightly looser than key points version but tighter than display to ensure fit
                             summaryP.style.lineHeight = '1.5';
                         }
-                    }
-                }
+
+                        // Force explicit padding on the content container to ensure margins are respected
+                        const contentContainer = card.querySelector('.flex.flex-col.bg-white');
+                        if (contentContainer) {
+                            contentContainer.style.padding = '15px';
+                            contentContainer.style.boxSizing = 'border-box';
+                        }
+                        }
+                        }
             });
             
             const image = canvas.toDataURL("image/png");
