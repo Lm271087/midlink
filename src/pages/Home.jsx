@@ -81,8 +81,9 @@ export default function HomePage() {
         setResult(null);
 
         try {
-            const response = await base44.functions.invoke('analyzeLink', { url, language });
-            
+            // Increase timeout to 90 seconds to handle longer content generation
+            const response = await base44.functions.invoke('analyzeLink', { url, language }, { timeout: 90000 });
+
             if (response.data.error) {
                 throw new Error(response.data.error);
             }
