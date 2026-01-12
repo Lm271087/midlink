@@ -45,27 +45,23 @@ export default function UrlForm({ onSubmit, isLoading, t }) {
                 transition={{ duration: 0.5 }}
                 className="space-y-6"
             >
-                <div className="space-y-6 flex flex-col items-center">
-                    <div className="relative inline-flex items-center justify-center">
-                        <div className="absolute inset-0 bg-indigo-500/20 blur-3xl rounded-full"></div>
-                        <div className="flex items-center gap-3 relative z-10">
-                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20 rotate-3 transition-transform hover:rotate-6">
-                                <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                            </div>
-                            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-slate-900">
-                                mid<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">link</span>
-                            </h1>
+                <div className="space-y-4 flex flex-col items-center mb-10">
+                    <div className="flex flex-col items-center gap-2">
+                        <div className="flex items-center gap-2 text-slate-900">
+                             <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center">
+                                <Sparkles className="w-4 h-4 text-white" />
+                             </div>
+                             <h1 className="text-3xl font-bold tracking-tight">midlink</h1>
                         </div>
+                        <p className="text-base text-slate-500 max-w-md mx-auto font-normal text-center leading-relaxed">
+                            {t.subtitle}
+                        </p>
                     </div>
-                    <p className="text-lg md:text-xl text-slate-500 max-w-lg mx-auto font-light leading-relaxed">
-                        {t.subtitle}
-                    </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="relative max-w-xl mx-auto group pt-4 w-full">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 transition duration-1000 group-hover:duration-200 group-hover:opacity-75"></div>
-                    <div className="relative flex p-2 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200/50 transition-all focus-within:ring-indigo-500/30 focus-within:shadow-xl focus-within:shadow-indigo-100/50">
-                        <div className="flex-1 flex items-center pr-2 min-w-0">
+                <form onSubmit={handleSubmit} className="relative max-w-lg mx-auto w-full">
+                    <div className="relative flex items-center p-1.5 bg-white rounded-full shadow-[0_2px_20px_rgba(0,0,0,0.04)] ring-1 ring-slate-100 transition-all hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)] focus-within:ring-slate-200 focus-within:shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
+                        <div className="pl-4 flex-1 flex items-center min-w-0">
                             <Input
                                 type="url"
                                 placeholder={t.placeholder}
@@ -74,30 +70,32 @@ export default function UrlForm({ onSubmit, isLoading, t }) {
                                     setUrl(e.target.value);
                                     if(error) setError("");
                                 }}
-                                className="w-full border-none shadow-none focus-visible:ring-0 text-base md:text-lg h-14 bg-transparent placeholder:text-slate-300 font-medium"
+                                className="w-full border-none shadow-none focus-visible:ring-0 text-base h-11 bg-transparent placeholder:text-slate-400/80 font-normal px-0"
                                 disabled={isLoading}
                             />
+                        </div>
+                        <div className="flex items-center gap-1 pr-1.5">
                             <Button
                                 type="button"
                                 onClick={handlePaste}
                                 variant="ghost"
-                                className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg mr-2 h-10 w-10 p-0 transition-colors shrink-0"
+                                className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50/50 rounded-full h-9 w-9 p-0 transition-all shrink-0"
                                 title={url ? t.replace_link : t.paste_link}
                             >
-                                <ClipboardPaste className={`w-5 h-5 ${url ? 'text-indigo-500' : ''}`} />
+                                <ClipboardPaste className={`w-4 h-4 ${url ? 'text-indigo-600' : ''}`} />
+                            </Button>
+                            <Button 
+                                type="submit" 
+                                disabled={isLoading}
+                                className="bg-slate-900 hover:bg-black text-white h-10 px-5 rounded-full font-medium text-sm transition-all shadow-sm hover:shadow-md"
+                            >
+                                {isLoading ? (
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                ) : (
+                                    <ArrowRight className="w-4 h-4" />
+                                )}
                             </Button>
                         </div>
-                        <Button 
-                            type="submit" 
-                            disabled={isLoading}
-                            className="bg-slate-900 hover:bg-black text-white h-14 px-8 rounded-xl font-medium transition-all shadow-none hover:shadow-lg hover:-translate-y-0.5"
-                        >
-                            {isLoading ? (
-                                <Loader2 className="w-5 h-5 animate-spin" />
-                            ) : (
-                                <Sparkles className="w-5 h-5" />
-                            )}
-                        </Button>
                     </div>
                 </form>
                 

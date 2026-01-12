@@ -92,12 +92,12 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 md:p-6 bg-[#FAFAFA] text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
-            {/* Subtle Background Pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50/50 via-white/50 to-purple-50/50 pointer-events-none"></div>
+        <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 md:p-6 bg-slate-50 text-slate-900 selection:bg-indigo-500/10 selection:text-indigo-700 relative overflow-hidden">
+            {/* Minimalist Ambient Background */}
+            <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-indigo-100/40 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-100/40 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="absolute top-4 right-4 z-50">
+            <div className="absolute top-6 right-6 z-50">
                 <LanguageSelector currentLang={language} onLanguageChange={setLanguage} />
             </div>
 
