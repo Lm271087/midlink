@@ -80,8 +80,8 @@ export default function HomePage() {
             let errorMessage = err.message || t.analyze_error;
             
             // Handle timeout/gateway errors specifically
-            if (errorMessage.includes('5024') || errorMessage.includes('timeout') || errorMessage.includes('504')) {
-                errorMessage = t.timeout_error || 'The analysis took too long. Please try again.';
+            if (errorMessage.includes('5024') || errorMessage.includes('timeout') || errorMessage.includes('504') || errorMessage.includes('Network Error')) {
+                errorMessage = t.timeout_error || 'The analysis took too long or failed to connect. Please try again.';
             }
 
             setError(errorMessage);

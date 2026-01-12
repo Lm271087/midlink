@@ -31,9 +31,7 @@ Deno.serve(async (req) => {
             - **Title**: EXACT video title (translated to ${languageName})
             - **Channel Name**: Extract the channel/creator name
             - **Summary**: Engaging overview (4-5 sentences) highlighting main value and context
-            - **Description**: Detailed description of video content, topics covered, key insights (3-4 sentences)
             - **Key Points**: 3 SPECIFIC takeaways or topics covered
-            - **Keywords**: 4-6 relevant tags/keywords
             - **Published Date**: Extract publication date
             - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
             - **Image**: Extract the HIGHEST QUALITY thumbnail from og:image, twitter:image, or YouTube maxresdefault thumbnail (prefer maxresdefault.jpg over other qualities)
@@ -43,9 +41,7 @@ Deno.serve(async (req) => {
             - **Title**: EXACT article headline (translated to ${languageName})
             - **Author**: Article author name
             - **Summary**: Engaging summary (3-4 sentences)
-            - **Description**: Meta description or first paragraph (longer explanation)
             - **Key Points**: 3 SPECIFIC facts or main ideas
-            - **Keywords**: 4-6 main keywords/topics from article
             - **Published Date**: Publication date
             - **Content Type**: "Notícia", "Artigo", "Opinião", "Blog" (in ${languageName})
             - **Image**: Extract the MAIN/FEATURED image from og:image, twitter:image:src, or article:image metadata (prefer high resolution)
@@ -61,9 +57,7 @@ Deno.serve(async (req) => {
                 properties: {
                     title: { type: "string" },
                     summary: { type: "string" },
-                    description: { type: "string" },
                     key_points: { type: "array", items: { type: "string" } },
-                    keywords: { type: "array", items: { type: "string" } },
                     image_url: { type: "string" },
                     source_name: { type: "string" },
                     channel_name: { type: "string" },
@@ -71,7 +65,7 @@ Deno.serve(async (req) => {
                     published_date: { type: "string" },
                     content_type: { type: "string" }
                 },
-                required: ["title", "summary", "description", "key_points", "keywords", "source_name"]
+                required: ["title", "summary", "key_points", "source_name"]
             }
         });
 
