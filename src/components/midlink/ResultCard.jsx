@@ -132,13 +132,13 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
             </div>
 
             {/* Content Body - ~40% Content + 10% Footer */}
-            <div className="h-[50%] px-4 sm:px-5 pt-4 sm:pt-6 pb-3 sm:pb-4 flex flex-col bg-white overflow-hidden">
+            <div className="h-[50%] px-[15px] pt-[15px] pb-3 sm:pb-4 flex flex-col bg-white overflow-hidden">
                 {/* Summary/Description */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="flex-1 shrink-0 px-[15px] flex items-center"
+                    className="flex-1 shrink-0 flex items-center"
                 >
                     <p className="text-slate-700 text-sm sm:text-[15px] leading-[1.6] sm:leading-[1.7] font-semibold line-clamp-[10] text-justify">
                         {summary}
