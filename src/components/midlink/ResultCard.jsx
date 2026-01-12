@@ -131,18 +131,35 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                 </div>
             </div>
 
-            {/* Content Body - ~40% Content + 10% Footer */}
+            {/* Content Body - 20% Summary + 20% Key Points + 10% Footer */}
             <div className="h-[50%] p-[15px] flex flex-col bg-white overflow-hidden">
-                {/* Summary/Description */}
+                {/* Summary - 20% */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="flex-1 shrink-0 flex items-start"
+                    className="h-[20%] flex items-start shrink-0"
                 >
-                    <p className="text-slate-700 text-sm sm:text-[15px] leading-[1.6] sm:leading-[1.7] font-semibold line-clamp-[9] text-justify">
+                    <p className="text-slate-700 text-sm sm:text-[15px] leading-[1.6] sm:leading-[1.7] font-semibold line-clamp-[4] text-justify">
                         {summary}
                     </p>
+                </motion.div>
+
+                {/* Key Points - 20% */}
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="h-[20%] flex flex-col justify-start shrink-0 text-xs sm:text-sm text-slate-600 mt-2"
+                >
+                    <div className="space-y-1 line-clamp-[2]">
+                        {key_points?.slice(0, 2).map((point, idx) => (
+                            <div key={idx} className="flex gap-2">
+                                <span className="font-bold text-indigo-600 flex-shrink-0">•</span>
+                                <span className="line-clamp-1">{point}</span>
+                            </div>
+                        ))}
+                    </div>
                 </motion.div>
 
                 {/* Footer - ~10% Height target */}
