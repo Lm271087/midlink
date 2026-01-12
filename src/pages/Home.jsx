@@ -35,6 +35,28 @@ export default function HomePage() {
                 backgroundColor: null,
                 logging: false,
                 allowTaint: true,
+                onclone: (documentClone) => {
+                    const card = documentClone.querySelector('.group\\/card');
+                    if (card) {
+                        // Reset transforms that might interfere
+                        card.style.transform = 'none';
+                        
+                        // Slightly tighten text in the content area to prevent wrapping issues on canvas
+                        // We target the paragraphs in the content body (second half of the card)
+                        const contentDiv = card.querySelectorAll('div.flex-col.bg-white p');
+                        contentDiv.forEach(p => {
+                            // Reduce letter spacing slightly (e.g. -0.2px) to ensure words fit on lines
+                            // This compensates for canvas text rendering being slightly wider
+                            const currentSpacing = window.getComputedStyle(p).letterSpacing;
+                            if (currentSpacing === 'normal') {
+                                p.style.letterSpacing = '-0.3px';
+                            } else {
+                                // If already has spacing (like tracking-tight), make it tighter
+                                p.style.letterSpacing = 'calc(' + currentSpacing + ' - 0.2px)';
+                            }
+                        });
+                    }
+                }
             });
             
             const image = canvas.toDataURL("image/png");
