@@ -131,39 +131,45 @@ const ResultCard = forwardRef(({ data, onImageUpdate, onTitleUpdate, t }, ref) =
                 </div>
             </div>
 
-            {/* Content Body - 20% Summary + 20% Key Points + 10% Footer */}
-            <div className="h-[50%] p-[15px] flex flex-col bg-white overflow-hidden gap-1">
-                {/* Summary - 20% */}
+            {/* Content Body - 50% of card total */}
+            {/* Inside: 40% Summary, 40% KeyPoints, 20% Footer (relative to this container) */}
+            {/* Total: 40% of 50% = 20% of card. */}
+            <div className="h-[50%] px-[15px] py-[15px] flex flex-col bg-white overflow-hidden relative">
+
+                {/* Summary Section - 40% of container (20% of card) */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="h-[20%] flex items-start shrink-0"
+                    className="h-[40%] w-full flex flex-col shrink-0 overflow-hidden"
                 >
-                    <p className="text-slate-700 text-sm sm:text-[15px] leading-[1.6] sm:leading-[1.7] font-semibold line-clamp-[4] text-justify">
+                    <p className="text-slate-700 text-sm sm:text-[15px] leading-relaxed font-semibold line-clamp-4 text-justify">
                         {summary}
                     </p>
                 </motion.div>
 
-                {/* Key Points - 20% */}
+                {/* Spacer - 5px fixed */}
+                <div className="h-[5px] w-full shrink-0"></div>
+
+                {/* Key Points Section - 40% of container (20% of card) */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
-                    className="h-[20%] flex flex-col justify-start shrink-0 text-xs sm:text-sm text-slate-600"
+                    className="h-[40%] w-full flex flex-col shrink-0 overflow-hidden text-xs sm:text-sm text-slate-600"
                 >
-                    <div className="space-y-1 line-clamp-[2]">
+                    <div className="space-y-2">
                         {key_points?.slice(0, 2).map((point, idx) => (
-                            <div key={idx} className="flex gap-2">
-                                <span className="font-bold text-indigo-600 flex-shrink-0">•</span>
-                                <span className="line-clamp-1">{point}</span>
+                            <div key={idx} className="flex gap-2 items-start">
+                                <span className="font-bold text-indigo-600 flex-shrink-0 mt-0.5">•</span>
+                                <span className="line-clamp-2 leading-snug">{point}</span>
                             </div>
                         ))}
                     </div>
                 </motion.div>
 
-                {/* Footer - ~10% Height target */}
-                <div className="mt-auto pt-3 border-t border-slate-100 flex justify-between items-center text-xs shrink-0 h-[10%] min-h-[40px]">
+                {/* Footer Section - Remaining space (approx 20% of container / 10% of card) */}
+                <div className="h-[20%] w-full flex justify-between items-end pb-1 text-xs shrink-0 border-t border-slate-100 mt-auto">
                     <div className="flex flex-col gap-0.5">
                         <div className="flex items-center gap-1.5 text-slate-500 font-medium">
                             <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-teal-400 to-cyan-500 animate-pulse shadow-[0_0_6px_rgba(45,212,191,0.6)]"></span>

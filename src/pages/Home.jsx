@@ -40,28 +40,7 @@ export default function HomePage() {
                     if (card) {
                         // Reset transforms that might interfere
                         card.style.transform = 'none';
-                        
-                        // Reduce letter spacing to fit more text on lines
-                        const contentDiv = card.querySelectorAll('div.flex-col.bg-white p');
-                        contentDiv.forEach(p => {
-                            p.style.letterSpacing = '-0.5px'; 
-                        });
-
-                        // Reduce vertical spacing (margin-bottom) for the summary paragraph
-                        // Use attribute selector for Tailwind arbitrary values
-                        const summaryP = card.querySelector('p[class*="line-clamp"]');
-                        if (summaryP) {
-                            // Force tighter line height for summary in the image capture if needed
-                            summaryP.style.lineHeight = '1.5';
-                        }
-
-                        // Force explicit padding on the content container to ensure margins are respected
-                        const contentContainer = card.querySelector('.flex.flex-col.bg-white');
-                        if (contentContainer) {
-                            contentContainer.style.padding = '15px';
-                            contentContainer.style.boxSizing = 'border-box';
-                        }
-                        }
+                    }
                         }
             });
             
