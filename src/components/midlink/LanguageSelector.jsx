@@ -18,8 +18,8 @@ export default function LanguageSelector({ currentLang, onLanguageChange }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-full w-10 h-10 bg-white/50 backdrop-blur-sm border border-slate-200 hover:bg-white/80 transition-all">
-          <Globe className="w-5 h-5 text-slate-600" />
+        <Button variant="ghost" size="icon" className="rounded-full w-9 h-9 bg-white/80 backdrop-blur-md shadow-sm border border-slate-100 hover:bg-white hover:shadow transition-all">
+          <Globe className="w-4 h-4 text-slate-500" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
