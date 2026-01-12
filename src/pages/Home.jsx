@@ -41,20 +41,25 @@ export default function HomePage() {
                         // Reset transforms that might interfere
                         card.style.transform = 'none';
                         
-                        // Slightly tighten text in the content area to prevent wrapping issues on canvas
-                        // We target the paragraphs in the content body (second half of the card)
+                        // Reduce letter spacing to fit more text on lines
                         const contentDiv = card.querySelectorAll('div.flex-col.bg-white p');
                         contentDiv.forEach(p => {
-                            // Reduce letter spacing slightly (e.g. -0.2px) to ensure words fit on lines
-                            // This compensates for canvas text rendering being slightly wider
-                            const currentSpacing = window.getComputedStyle(p).letterSpacing;
-                            if (currentSpacing === 'normal') {
-                                p.style.letterSpacing = '-0.3px';
-                            } else {
-                                // If already has spacing (like tracking-tight), make it tighter
-                                p.style.letterSpacing = 'calc(' + currentSpacing + ' - 0.2px)';
-                            }
+                            p.style.letterSpacing = '-0.5px'; 
                         });
+
+                        // Reduce vertical spacing (margin-bottom) for the summary paragraph
+                        const summaryP = card.querySelector('p.line-clamp-4');
+                        if (summaryP) {
+                            summaryP.parentElement.style.marginBottom = '8px'; // was mb-5 (20px) or mb-3 (12px)
+                            // Force tighter line height for summary
+                            summaryP.style.lineHeight = '1.35';
+                        }
+                        
+                        // Reduce gap between key points
+                        const keyPointsContainer = card.querySelector('.space-y-1\\.5');
+                        if (keyPointsContainer) {
+                            keyPointsContainer.style.rowGap = '2px'; // tighter gap
+                        }
                     }
                 }
             });
