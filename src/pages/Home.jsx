@@ -4,6 +4,7 @@ import UrlForm from "@/components/midlink/UrlForm";
 import ResultCard from "@/components/midlink/ResultCard";
 import ShareActions from "@/components/midlink/ShareActions";
 import LanguageSelector from "@/components/midlink/LanguageSelector";
+import InstallPrompt from "@/components/midlink/InstallPrompt";
 import { translations } from "@/components/midlink/translations";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
@@ -108,6 +109,8 @@ export default function HomePage() {
             <div className="absolute top-6 right-6 z-50">
                 <LanguageSelector currentLang={language} onLanguageChange={setLanguage} />
             </div>
+
+            <InstallPrompt t={t} />
 
             <div className="w-full max-w-4xl space-y-6 md:space-y-8 relative z-10 pt-8 md:pt-0">
                 
