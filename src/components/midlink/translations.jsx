@@ -21,7 +21,11 @@ export const translations = {
     replace_link: 'Substituir link',
     paste_link: 'Colar link',
     change_image: 'Alterar imagem',
-    failed_extract: 'Não foi possível extrair dados desta URL.'
+    failed_extract: 'Não foi possível extrair dados desta URL.',
+    install_app: 'Instalar Midlink',
+    install_desc: 'Instale nosso app para uma melhor experiência.',
+    install_ios_desc: 'Adicione à tela de início para acesso rápido.',
+    install_btn: 'Instalar Agora'
   },
   'es-419': {
     subtitle: 'Crea tarjetas visuales impresionantes desde cualquier enlace, al instante.',
@@ -45,7 +49,11 @@ export const translations = {
     replace_link: 'Reemplazar enlace',
     paste_link: 'Pegar enlace',
     change_image: 'Cambiar imagen',
-    failed_extract: 'No se pudieron extraer datos de esta URL.'
+    failed_extract: 'No se pudieron extraer datos de esta URL.',
+    install_app: 'Instalar Midlink',
+    install_desc: 'Instala nuestra app para una mejor experiencia.',
+    install_ios_desc: 'Añadir a la pantalla de inicio para acceso rápido.',
+    install_btn: 'Instalar Ahora'
   },
   'en-US': {
     subtitle: 'Create stunning visual cards from any link, instantly.',
@@ -70,6 +78,10 @@ export const translations = {
     paste_link: 'Paste link',
     change_image: 'Change image',
     failed_extract: 'Could not extract data from this URL.',
-    timeout_error: 'The analysis took too long. Please try again or use a simpler URL.'
+    timeout_error: 'The analysis took too long. Please try again or use a simpler URL.',
+    install_app: 'Install Midlink',
+    install_desc: 'Install our app for a better experience.',
+    install_ios_desc: 'Add to Home Screen for quick access.',
+    install_btn: 'Install Now'
   }
 };
