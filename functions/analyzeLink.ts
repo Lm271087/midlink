@@ -30,8 +30,8 @@ Deno.serve(async (req) => {
             **FOR VIDEOS (YouTube, etc.):**
             - **Title**: EXACT video title (translated to ${languageName})
             - **Channel Name**: Extract the channel/creator name
-            - **Summary**: detailed paragraph covering the main topic (approx 4-5 lines). Ensure it ends with a complete sentence and a period.
-            - **Key Points**: 3 to 4 distinct key takeaways.
+            - **Summary**: A single, self-contained paragraph (approx 4-5 lines) that summarizes the main content. MUST end with a full stop/period (.). MUST NOT start with "In this video..." or "The article discusses...". MUST NOT end with "..." or look like a cut-off sentence.
+            - **Key Points**: 3 to 4 distinct, complete bullet points.
             - **Published Date**: Extract publication date
             - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
             - **Image**: Extract the HIGHEST QUALITY thumbnail from og:image, twitter:image, or YouTube maxresdefault thumbnail (prefer maxresdefault.jpg over other qualities)
@@ -40,8 +40,8 @@ Deno.serve(async (req) => {
             **FOR ARTICLES/NEWS:**
             - **Title**: EXACT article headline (translated to ${languageName})
             - **Author**: Article author name
-            - **Summary**: detailed paragraph covering the main topic (approx 4-5 lines). Ensure it ends with a complete sentence and a period.
-            - **Key Points**: 3 to 4 distinct key facts.
+            - **Summary**: A single, self-contained paragraph (approx 4-5 lines) that summarizes the main content. MUST end with a full stop/period (.). MUST NOT start with "In this video..." or "The article discusses...". MUST NOT end with "..." or look like a cut-off sentence.
+            - **Key Points**: 3 to 4 distinct, complete bullet points.
             - **Published Date**: Publication date
             - **Content Type**: "Notícia", "Artigo", "Opinião", "Blog" (in ${languageName})
             - **Image**: Extract the MAIN/FEATURED image from og:image, twitter:image:src, or article:image metadata (prefer high resolution)
