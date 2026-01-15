@@ -30,8 +30,8 @@ Deno.serve(async (req) => {
             **FOR VIDEOS (YouTube, etc.):**
             - **Title**: EXACT video title (translated to ${languageName})
             - **Channel Name**: Extract the channel/creator name
-            - **Summary**: comprehensive paragraph covering the main topic (approx 5-6 lines). MUST end with a final period (.). Do not leave unfinished sentences.
-            - **Key Points**: 4 SPECIFIC takeaways or topics covered
+            - **Summary**: detailed paragraph covering the main topic (approx 4-5 lines). Ensure it ends with a complete sentence and a period.
+            - **Key Points**: 3 to 4 distinct key takeaways.
             - **Published Date**: Extract publication date
             - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
             - **Image**: Extract the HIGHEST QUALITY thumbnail from og:image, twitter:image, or YouTube maxresdefault thumbnail (prefer maxresdefault.jpg over other qualities)
@@ -40,8 +40,8 @@ Deno.serve(async (req) => {
             **FOR ARTICLES/NEWS:**
             - **Title**: EXACT article headline (translated to ${languageName})
             - **Author**: Article author name
-            - **Summary**: comprehensive paragraph covering the main topic (approx 5-6 lines). MUST end with a final period (.). Do not leave unfinished sentences.
-            - **Key Points**: 4 SPECIFIC facts or main ideas
+            - **Summary**: detailed paragraph covering the main topic (approx 4-5 lines). Ensure it ends with a complete sentence and a period.
+            - **Key Points**: 3 to 4 distinct key facts.
             - **Published Date**: Publication date
             - **Content Type**: "Notícia", "Artigo", "Opinião", "Blog" (in ${languageName})
             - **Image**: Extract the MAIN/FEATURED image from og:image, twitter:image:src, or article:image metadata (prefer high resolution)
@@ -71,6 +71,10 @@ Deno.serve(async (req) => {
 
         // The integration returns a dict/object directly when json schema is used
         const analysis = llmResponse;
+
+        if (!analysis || !analysis.title) {
+            throw new Error("Failed to generate valid analysis data");
+        }
 
         // Save to database (optional, but good for history)
         // We use service role if user is not logged in, or just standard entity creation
