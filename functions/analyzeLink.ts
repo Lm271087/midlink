@@ -1,4 +1,4 @@
-import { createClientFromRequest } from 'npm:@base44/sdk@0.8.4';
+import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
 Deno.serve(async (req) => {
     try {
@@ -22,34 +22,16 @@ Deno.serve(async (req) => {
             prompt: `
             Analyze the following URL: ${url}
 
-            **CRITICAL RULES:**
-            1. Visit and extract the EXACT page/video title from metadata (og:title, page title, video title).
-            2. **ABSOLUTELY FORBIDDEN**: NEVER use phrases like "Análise do vídeo:", "Video Analysis:", "Análisis del video:" or ANY variation in the title field.
-            3. The title MUST be the EXACT original title from the page/video, translated to ${languageName} if needed.
+            Analyze the URL and extract the following information in ${languageName}.
 
-            **FOR VIDEOS (YouTube, etc.):**
-            - **Title**: EXACT video title (translated to ${languageName})
-            - **Channel Name**: Extract the channel/creator name
-            - **Summary**: A single, self-contained paragraph (approx 4-5 lines) that summarizes the main content. MUST end with a full stop/period (.). MUST NOT start with "In this video..." or "The article discusses...". MUST NOT end with "..." or look like a cut-off sentence.
-            - **Key Points**: 3 to 4 distinct, complete bullet points.
-            - **Published Date**: Extract publication date
-            - **Content Type**: "Vídeo" or "Tutorial" (in ${languageName})
-            - **Image**: Extract the HIGHEST QUALITY thumbnail from og:image, twitter:image, or YouTube maxresdefault thumbnail (prefer maxresdefault.jpg over other qualities)
-            - **Source Name**: "YouTube"
+            **Instructions:**
+            1. **Title**: Extract the exact title (og:title, video title). Do NOT add prefixes like "Analysis of:" or "Summary of:".
+            2. **Summary**: Write a single, comprehensive paragraph (4-5 lines) summarizing the content. It MUST be a complete text ending with a period. Do NOT start with "The video is about..." or "This article...". Write it directly.
+            3. **Key Points**: Provide 3-4 distinct, complete bullet points of the most important takeaways.
+            4. **Image**: Find the highest resolution image available (og:image, maxresdefault for YouTube).
+            5. **Meta**: Extract Author/Channel, Date, Source Name, and Content Type (Video, Article, etc.).
 
-            **FOR ARTICLES/NEWS:**
-            - **Title**: EXACT article headline (translated to ${languageName})
-            - **Author**: Article author name
-            - **Summary**: A single, self-contained paragraph (approx 4-5 lines) that summarizes the main content. MUST end with a full stop/period (.). MUST NOT start with "In this video..." or "The article discusses...". MUST NOT end with "..." or look like a cut-off sentence.
-            - **Key Points**: 3 to 4 distinct, complete bullet points.
-            - **Published Date**: Publication date
-            - **Content Type**: "Notícia", "Artigo", "Opinião", "Blog" (in ${languageName})
-            - **Image**: Extract the MAIN/FEATURED image from og:image, twitter:image:src, or article:image metadata (prefer high resolution)
-            - **Source Name**: Website/publication name
-
-            **NEVER leave fields empty** - infer from available metadata if needed.
-
-            Return ONLY a valid JSON object with ALL fields in ${languageName}.
+            Ensure all text fields are in ${languageName} and the JSON structure is valid.
             `,
             add_context_from_internet: true,
             response_json_schema: {

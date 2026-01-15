@@ -93,6 +93,11 @@ export default function HomePage() {
                 errorMessage = t.timeout_error || 'The analysis took too long or failed to connect. Please try again.';
             }
 
+            // If it's a 500 error from our function, it might be generic. Try to be helpful.
+            if (errorMessage.includes('500') || errorMessage.includes('status code 500')) {
+                 errorMessage = "Service temporarily unavailable or link content not accessible. Please try a different link or try again later.";
+            }
+
             setError(errorMessage);
             toast.error(t.analyze_fail_title, { description: errorMessage });
         } finally {
