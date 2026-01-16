@@ -36,13 +36,17 @@ export default function HomePage() {
                 backgroundColor: null,
                 logging: false,
                 allowTaint: true,
+                windowWidth: 1200, // Force desktop width to ensure consistent layout
                 onclone: (documentClone) => {
                     const card = documentClone.querySelector('.group\\/card');
                     if (card) {
-                        // Reset transforms that might interfere
+                        // Ensure specific width during capture to match design
+                        card.style.width = '400px';
+                        card.style.maxWidth = '400px';
                         card.style.transform = 'none';
+                        card.style.boxShadow = 'none'; // Remove potential shadow artifacts
                     }
-                        }
+                }
             });
             
             const image = canvas.toDataURL("image/png");
