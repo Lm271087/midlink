@@ -26,7 +26,7 @@ Deno.serve(async (req) => {
 
             **Instructions:**
             1. **Title**: Extract the exact title (og:title, video title). Do NOT add prefixes like "Analysis of:" or "Summary of:".
-            2. **Summary**: Write a single paragraph that fits EXACTLY 5 lines (approx 40-50 words). It MUST be a complete text ending with a period. Do NOT end with "...". Do NOT start with "The video is about...". Focus on the most important information.
+            2. **Summary**: Write a VERY CONCISE paragraph (MAXIMUM 35 words). It MUST be complete and end with a period. Do NOT end with "...". Do NOT start with "The video is about...". Ensure it is short enough to never be truncated.
             3. **Key Points**: Provide 3-4 distinct, complete bullet points of the most important takeaways.
             4. **Image**: Find the highest resolution image available (og:image, maxresdefault for YouTube).
             5. **Meta**: Extract Author/Channel, Date, Source Name, and Content Type (Video, Article, etc.).
