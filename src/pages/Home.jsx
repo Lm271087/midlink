@@ -11,7 +11,6 @@ import { toast } from "sonner";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AnimatePresence, motion } from "framer-motion";
-import html2canvas from 'html2canvas';
 
 export default function HomePage() {
     const [result, setResult] = useState(null);
@@ -27,6 +26,8 @@ export default function HomePage() {
         if (!cardRef.current) return;
         setIsDownloading(true);
         try {
+            const html2canvas = (await import('html2canvas')).default;
+
             // Wait a bit for any images to be fully rendered/loaded if they just appeared
             await new Promise(resolve => setTimeout(resolve, 500));
 
