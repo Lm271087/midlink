@@ -36,7 +36,7 @@ export default function HomePage() {
                 scale: 3, // Higher resolution
                 backgroundColor: null,
                 logging: false,
-                allowTaint: true,
+                allowTaint: false,
                 windowWidth: 1200, // Force desktop width to ensure consistent layout
                 onclone: (documentClone) => {
                     const card = documentClone.querySelector('.group\\/card');

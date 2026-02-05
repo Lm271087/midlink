@@ -54,6 +54,11 @@ Deno.serve(async (req) => {
         // The integration returns a dict/object directly when json schema is used
         const analysis = llmResponse;
 
+        // Ensure summary ends with a period
+        if (analysis && analysis.summary && !analysis.summary.endsWith('.')) {
+            analysis.summary += '.';
+        }
+
         if (!analysis || !analysis.title) {
             throw new Error("Failed to generate valid analysis data");
         }
