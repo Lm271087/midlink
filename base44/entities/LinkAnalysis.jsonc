@@ -1,0 +1,72 @@
+{
+  "name": "LinkAnalysis",
+  "type": "object",
+  "properties": {
+    "original_url": {
+      "type": "string",
+      "description": "The URL submitted by the user"
+    },
+    "title": {
+      "type": "string",
+      "description": "Extracted title"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short summary of the content"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description (especially for videos)"
+    },
+    "key_points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Main topics/bullet points"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Main keywords/tags"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL of the relevant image"
+    },
+    "source_name": {
+      "type": "string",
+      "description": "Name of the source website"
+    },
+    "channel_name": {
+      "type": "string",
+      "description": "Channel name (for videos)"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author of the content"
+    },
+    "published_date": {
+      "type": "string",
+      "description": "Publication date"
+    },
+    "content_type": {
+      "type": "string",
+      "description": "Type of content (News, Opinion, Technical, Video, etc.)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "processing"
+    }
+  },
+  "required": [
+    "original_url"
+  ]
+}
